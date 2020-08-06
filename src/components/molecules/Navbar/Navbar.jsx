@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
   }));
 
 
-export default () => {
+export default ({navigationButtonList}) => {
     const classes = useStyles();
     const [value, setValue] = React.useState(0);
     let history = useHistory()
@@ -30,22 +30,15 @@ export default () => {
 
 
   return (
-    <div className={classes.root}>
       <AppBar position="static">
         <Toolbar>
-          <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-            <MenuIcon />
-          </IconButton>
           <Typography variant="h6" className={classes.title}>
             News
           </Typography>
-          <NavigationButton destinationPath='/about' label='About'></NavigationButton>
-          <NavigationButton destinationPath='/about' label='Features'></NavigationButton>
-          <NavigationButton destinationPath='/about' label='FAQ'></NavigationButton>
-          <NavigationButton destinationPath='/about' label='Sign Up'></NavigationButton>
-          <NavigationButton destinationPath='/about' label='Sign In'></NavigationButton>
+          {navigationButtonList.map((navbutton, i) => {
+            return <NavigationButton destinationPath={navbutton.path} label={navbutton.label} key={i}></NavigationButton>
+          })}
         </Toolbar>
       </AppBar>
-    </div>
   )
 }

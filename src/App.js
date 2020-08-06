@@ -2,17 +2,18 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import { Route, Switch } from 'react-router-dom'
-import Brand from './components/atoms/Brand/Brand'
+import Home from './components/pages/Home/Home'
 import Navbar from './components/molecules/Navbar/Navbar'
+import Container from '@material-ui/core'
 
 function App() {
   return (
-    <div className="App">
+    <Container fixed>
       <Switch>
-        <Route path="/" component={Brand} exact />
+        <Route path="/" component={Home} exact />
         <Route path="/about" component={Navbar} exact />
       </Switch>
-    </div>
+    </Container>
   );
 }
 
