@@ -29,6 +29,7 @@ import WhatshotIcon from '@material-ui/icons/Whatshot';
 import GrainIcon from '@material-ui/icons/Grain';
 import NavigationBreadcrumbLink from '../../components/atoms/NavigationButton/NavigationBreadcrumbLink'
 import PicGridList from '../GridList/PicGridList'
+import NavigationButton from '../../components/atoms/NavigationButton/NavigationButton';
 
 function Copyright() {
   return (
@@ -201,7 +202,13 @@ export default function Dashboard() {
               Universes
             </Typography>
           </Breadcrumbs>
-          <PicGridList />
+          <NavigationButton destinationPath='create_universe' label='Create Universe' />
+          <ul>
+            <li>fetch a list of user universes and add a delete button next to each. Clicking the verse will take them to the Verse's Dashboard</li>
+            <li>Underneath here, we can have a recently edited pages from this specific universe</li>
+          </ul>
+
+
           </Grid>
           <Box pt={4}>
             <Copyright />
