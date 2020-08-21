@@ -9,12 +9,15 @@ async function handleClick(event) {
     data.set("username", data.get("username".toLowerCase()))
     data.set("email", data.get("email").toLowerCase())
     console.log(data.get("email"))
+    const body = {}
+    data.forEach((value, property) => body[property] = value)
+    console.log(body)
 
     const config = {     
         headers: { 'content-type': 'multipart/form-data' }
     }
 
-    axios.post("http://localhost:8080/api/register", data, config)
+    axios.post("/register", body)
     .then(response => {
         console.log(response)
     })
