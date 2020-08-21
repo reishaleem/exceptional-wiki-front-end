@@ -1,10 +1,17 @@
 import React from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
+import axios from 'axios'
+
+async function handleClick(event) {
+    event.preventDefault()
+    const data = new FormData(event.target)
+    console.log(data.get('username'))
+}
 
 export default () => {
     return (
-        <Form>
+        <Form onSubmit={handleClick}>
             <Form.Group controlId="formBasicName">
                 <Form.Label>Your Name</Form.Label>
                 <Form.Control type="name" placeholder="" />
@@ -12,7 +19,7 @@ export default () => {
 
             <Form.Group controlId="formBasicUsername">
                 <Form.Label>Username</Form.Label>
-                <Form.Control type="username" placeholder="" />
+                <Form.Control type="username" placeholder="" name='username'/>
             </Form.Group>
 
             <Form.Group controlId="formBasicEmail">
