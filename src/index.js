@@ -4,6 +4,10 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter } from 'react-router-dom'
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faUserPlus } from '@fortawesome/free-solid-svg-icons'
+
+library.add(faUserPlus)
 
 ReactDOM.render(
   <React.StrictMode>

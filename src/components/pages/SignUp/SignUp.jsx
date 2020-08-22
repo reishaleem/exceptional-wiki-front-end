@@ -2,31 +2,36 @@ import React from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import axios from 'axios'
+import { useHistory } from 'react-router-dom'
 
-async function handleClick(event) {
-    event.preventDefault()
-    const data = new FormData(event.target)
-    data.set("username", data.get("username".toLowerCase()))
-    data.set("email", data.get("email").toLowerCase())
-    console.log(data.get("email"))
-    const body = {}
-    data.forEach((value, property) => body[property] = value)
-    console.log(body)
-
-    const config = {     
-        headers: { 'content-type': 'multipart/form-data' }
-    }
-
-    axios.post("/register", body)
-    .then(response => {
-        console.log(response)
-    })
-    .catch(error => {
-        console.log(error)
-    })
-}
 
 export default () => {
+    let history = useHistory()
+
+    async function handleClick(event) {
+        event.preventDefault()
+        const data = new FormData(event.target)
+        data.set("username", data.get("username".toLowerCase()))
+        data.set("email", data.get("email").toLowerCase())
+        console.log(data.get("email"))
+        const body = {}
+        data.forEach((value, property) => body[property] = value)
+        console.log(body)
+    
+        const config = {     
+            headers: { 'content-type': 'multipart/form-data' }
+        }
+    
+        // axios.post("/register", body)
+        // .then(response => {
+        //     console.log(response)
+        // })
+        // .catch(error => {
+        //     console.log(error)
+        // })
+        history.push("/profile") // kind of want we want...except, we would need to somehow redirect to this specific user's profile...
+    }
+
     return (
         <Form onSubmit={handleClick}>
             <Form.Group controlId="formBasicName">
