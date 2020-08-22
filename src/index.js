@@ -1,21 +1,26 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
-import { BrowserRouter } from 'react-router-dom'
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { faUserPlus } from '@fortawesome/free-solid-svg-icons'
+import React from "react";
+import ReactDOM from "react-dom";
+import "./index.css";
+import App from "./App";
+import * as serviceWorker from "./serviceWorker";
+import { BrowserRouter } from "react-router-dom";
+import { library } from "@fortawesome/fontawesome-svg-core";
+import {
+    faUserPlus,
+    faGlobeAmericas,
+    faTools,
+    faPen,
+} from "@fortawesome/free-solid-svg-icons";
 
-library.add(faUserPlus)
+library.add(faUserPlus, faGlobeAmericas, faTools, faPen);
 
 ReactDOM.render(
-  <React.StrictMode>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
-  </React.StrictMode>,
-  document.getElementById('root')
+    <React.StrictMode>
+        <BrowserRouter>
+            <App />
+        </BrowserRouter>
+    </React.StrictMode>,
+    document.getElementById("root")
 );
 
 // If you want your app to work offline and load faster, you can change
