@@ -1,6 +1,7 @@
 import React from "react";
 import "./App.css";
 import SignUp from "./components/pages/SignUp/SignUp";
+import SignIn from "./components/pages/SignIn/SignIn";
 import MainHome from "./components/pages/MainHome/MainHome";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Route, Switch } from "react-router-dom";
@@ -20,6 +21,7 @@ function App() {
                     <Route path="/about" component={About} exact />
                     <Route path="/features" component={Features} exact />
                     <Route path="/register" component={SignUp} exact />
+                    <Route path="/login" component={SignIn} exact />
                     <Route path="/profile" component={UserProfilePage} exact />
                 </Switch>
             </Container>

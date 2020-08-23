@@ -8,6 +8,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Link } from "react-router-dom";
 
 export default () => {
     let history = useHistory();
@@ -41,30 +42,10 @@ export default () => {
             <Container>
                 <Row>
                     <Col md={7}>
+                        <h2 className="text-center mb-3">Login</h2>
                         <Card>
-                            <Card.Header>Create your account</Card.Header>
                             <Card.Body>
                                 <Form onSubmit={handleClick}>
-                                    <Form.Group
-                                        as={Row}
-                                        controlId="formBasicName"
-                                    >
-                                        <Form.Label
-                                            column
-                                            md={4}
-                                            className="text-md-right pt-md-2"
-                                        >
-                                            Name
-                                        </Form.Label>
-                                        <Col md={8}>
-                                            <Form.Control
-                                                type="name"
-                                                placeholder=""
-                                                name="name"
-                                            />
-                                        </Col>
-                                    </Form.Group>
-
                                     <Form.Group
                                         as={Row}
                                         controlId="formBasicUsername"
@@ -74,7 +55,7 @@ export default () => {
                                             md={4}
                                             className="text-md-right pt-md-2"
                                         >
-                                            Username
+                                            Username or Email
                                         </Form.Label>
                                         <Col md={8}>
                                             <Form.Control
@@ -82,30 +63,6 @@ export default () => {
                                                 placeholder=""
                                                 name="username"
                                             />
-                                        </Col>
-                                    </Form.Group>
-
-                                    <Form.Group
-                                        as={Row}
-                                        controlId="formBasicEmail"
-                                    >
-                                        <Form.Label
-                                            column
-                                            md={4}
-                                            className="text-md-right pt-md-2"
-                                        >
-                                            Email address
-                                        </Form.Label>
-                                        <Col md={8}>
-                                            <Form.Control
-                                                type="email"
-                                                placeholder=""
-                                                name="email"
-                                            />
-                                            <Form.Text className="text-muted">
-                                                We'll never share your email
-                                                with anyone else.
-                                            </Form.Text>
                                         </Col>
                                     </Form.Group>
 
@@ -123,47 +80,44 @@ export default () => {
                                         <Col md={8}>
                                             <Form.Control
                                                 type="password"
-                                                placeholder="At least 6 characters"
                                                 name="password"
                                             />
                                         </Col>
                                     </Form.Group>
-
-                                    <Form.Group
-                                        as={Row}
-                                        controlId="formBasicPassword"
-                                    >
-                                        <Form.Label
-                                            column
-                                            md={4}
-                                            className="text-md-right pt-md-2"
-                                        >
-                                            Re-enter Password
-                                        </Form.Label>
-                                        <Col md={8}>
-                                            <Form.Control
-                                                type="password"
-                                                placeholder=""
-                                                name="checkPassword"
+                                    <Form.Group as={Row}>
+                                        <Col md={8} className="offset-md-4">
+                                            <Form.Check
+                                                type="checkbox"
+                                                label="Remember me"
                                             />
                                         </Col>
                                     </Form.Group>
 
-                                    <Button
-                                        variant="primary"
-                                        type="submit"
-                                        className="float-right"
-                                    >
-                                        Register
-                                    </Button>
+                                    <Form.Group as={Row}>
+                                        <Col md={8} className="offset-md-4">
+                                            <Button
+                                                variant="primary"
+                                                type="submit"
+                                                className="mr-3 mb-3"
+                                            >
+                                                Login
+                                            </Button>
+                                            <br />
+                                            <Link to={"/#ForgotPass"}>
+                                                Forgot password?
+                                            </Link>
+                                            <br />
+                                            <Link to={"/register"}>
+                                                Don't have an account?
+                                            </Link>
+                                        </Col>
+                                    </Form.Group>
                                 </Form>
                             </Card.Body>
                         </Card>
                     </Col>
                     <Col md={5}>
-                        <h2 className="text-center mb-5">
-                            Sign up with Social
-                        </h2>
+                        <h3 className="text-center mb-5">Login with Social</h3>
                         <Button variant="danger" block>
                             <FontAwesomeIcon icon="user-plus"></FontAwesomeIcon>
                             {" Google"}

@@ -13,19 +13,21 @@ export default () => {
         <>
             <Row className="about-heading">
                 <Container>
-                    <Col>
-                        <h3
-                            style={{
-                                fontSize: "54px",
-                                marginBottom: "3rem",
-                                fontWeight: "lighter",
-                            }}
-                        >
-                            Typwriter going through worldbuilding, writing,
-                            storytelling, etc.
-                        </h3>
-                        <p>We love it all.</p>
-                    </Col>
+                    <Row>
+                        <Col>
+                            <h3
+                                style={{
+                                    fontSize: "54px",
+                                    marginBottom: "3rem",
+                                    fontWeight: "lighter",
+                                }}
+                            >
+                                Typwriter going through worldbuilding, writing,
+                                storytelling, etc.
+                            </h3>
+                            <p>We love it all.</p>
+                        </Col>
+                    </Row>
                 </Container>
             </Row>
             <Container className="about-desc">
