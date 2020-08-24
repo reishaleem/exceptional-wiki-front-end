@@ -1,41 +1,38 @@
 import React, {useState, useEffect} from "react";
 import axios from 'axios'
+import AuthService from "../../../services/auth.service";
 import ProfilePage from '../../organisms/ProfilePage/ProfilePage'
 
 
 export default () => {
 
-    const [userData, setUserData] = useState()
+    const currentUser = AuthService.getCurrentUser();
 
-    // need to call this just once when we load the page...?
-    async function getUserProfilePage(userId) {
-        console.log("ID", userId)
-        let data = {}
-        // axios.get("/profile")
-        // .then(response => {
-        //     console.log(response.data)
 
-        //     console.log("Here")
-        //     data = response.data
-        // })
-        // .catch(error => {
-        //     console.log(error)
-        // })
-
-        const resp = await axios.get("/profile")
-        console.log(resp)
-        setUserData(resp.data)
-        
-        return resp.data
-    }
-
-    //setUserData(getUserProfilePage(1))
-
-    //const usData = getUserProfilePage(1)
-    console.log(userData)
     return (
         <>
-            <ProfilePage userData={userData} />
+            <div className="container">
+      <header className="jumbotron">
+        <h3>
+          <strong>{currentUser.username}</strong> Profile
+        </h3>
+      </header>
+      <p>
+        <strong>Token:</strong> {currentUser.accessToken.substring(0, 20)} ...{" "}
+        {currentUser.accessToken.substr(currentUser.accessToken.length - 20)}
+      </p>
+      <p>
+        <strong>Id:</strong> {currentUser.id}
+      </p>
+      <p>
+        <strong>Email:</strong> {currentUser.email}
+      </p>
+      <strong>Authorities:</strong>
+      <ul>
+        {currentUser.roles &&
+          currentUser.roles.map((role, index) => <li key={index}>{role}</li>)}
+      </ul>
+    </div>
         </>
     );
 };

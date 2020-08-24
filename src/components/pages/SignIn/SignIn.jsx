@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState, useRef} from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import axios from "axios";
@@ -9,33 +9,72 @@ import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
+import {Form as ValidationForm} from "react-validation/build/form";
+import Input from "react-validation/build/input";
+import CheckButton from "react-validation/build/button";
+import AuthService from "../../../services/auth.service";
+
+const required = (value) => {
+    if (!value) {
+      return (
+        <div className="alert alert-danger" role="alert">
+          This field is required!
+        </div>
+      );
+    }
+  };
 
 export default () => {
-    let history = useHistory();
+    let history = useHistory()
+    const form = useRef();
+  const checkBtn = useRef();
 
-    async function handleClick(event) {
-        event.preventDefault();
-        const data = new FormData(event.target);
-        data.set("username", data.get("username".toLowerCase()));
-        data.set("email", data.get("email").toLowerCase());
-        console.log(data.get("email"));
-        const body = {};
-        data.forEach((value, property) => (body[property] = value));
-        console.log(body);
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [message, setMessage] = useState("");
 
-        const config = {
-            headers: { "content-type": "multipart/form-data" },
-        };
+  const onChangeUsername = (e) => {
+    const username = e.target.value;
+    setUsername(username);
+  };
 
-        // axios.post("/register", body)
-        // .then(response => {
-        //     console.log(response)
-        // })
-        // .catch(error => {
-        //     console.log(error)
-        // })
-        history.push("/profile"); // kind of want we want...except, we would need to somehow redirect to this specific user's profile...
+  const onChangePassword = (e) => {
+    const password = e.target.value;
+    setPassword(password);
+  };
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+
+    setMessage("");
+    setLoading(true);
+
+    form.current.validateAll();
+
+    if (checkBtn.current.context._errors.length === 0) {
+      AuthService.login(username, password).then(
+        () => {
+          history.push("/profile");
+          window.location.reload();
+        },
+        (error) => {
+          const resMessage =
+            (error.response &&
+              error.response.data &&
+              error.response.data.message) ||
+            error.message ||
+            error.toString();
+
+          setLoading(false);
+          setMessage(resMessage);
+        }
+      );
+    } else {
+      setLoading(false);
     }
+  };
+
 
     return (
         <div class="register-page">
@@ -45,7 +84,7 @@ export default () => {
                         <h2 className="text-center mb-3">Login</h2>
                         <Card>
                             <Card.Body>
-                                <Form onSubmit={handleClick}>
+                                <ValidationForm onSubmit={handleLogin} ref={form}>
                                     <Form.Group
                                         as={Row}
                                         controlId="formBasicUsername"
@@ -59,9 +98,12 @@ export default () => {
                                         </Form.Label>
                                         <Col md={8}>
                                             <Form.Control
-                                                type="username"
+                                                type="text"
                                                 placeholder=""
                                                 name="username"
+                                                value={username}
+                                                onChange={onChangeUsername}
+                                                validations={[required]}
                                             />
                                         </Col>
                                     </Form.Group>
@@ -81,6 +123,9 @@ export default () => {
                                             <Form.Control
                                                 type="password"
                                                 name="password"
+                                                value={password}
+                                                onChange={onChangePassword}
+                                                validations={[required]}
                                             />
                                         </Col>
                                     </Form.Group>
@@ -99,7 +144,11 @@ export default () => {
                                                 variant="primary"
                                                 type="submit"
                                                 className="mr-3 mb-3"
+                                                disabled={loading}
                                             >
+                                                {loading && (
+                <span className="spinner-border spinner-border-sm"></span>
+              )}
                                                 Login
                                             </Button>
                                             <br />
@@ -110,9 +159,18 @@ export default () => {
                                             <Link to={"/register"}>
                                                 Don't have an account?
                                             </Link>
+
+                                            {message && (
+            <div className="form-group">
+              <div className="alert alert-danger" role="alert">
+                {message}
+              </div>
+            </div>
+          )}
+          <CheckButton style={{ display: "none" }} ref={checkBtn} />
                                         </Col>
                                     </Form.Group>
-                                </Form>
+                                </ValidationForm>
                             </Card.Body>
                         </Card>
                     </Col>
