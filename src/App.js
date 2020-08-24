@@ -11,6 +11,7 @@ import UserSecurityPage from "./components/pages/UserProfilePage/UserSecurityPag
 import About from "./components/pages/About/About";
 import Navbar from "./components/atoms/Navbar/Navbar";
 import Features from "./components/pages/Features/Features";
+import AppHome from "./components/pages/AppHome/AppHome";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
       <Container fluid>
         <Switch>
           <Route path="/" component={MainHome} exact />
+          <Route path="/app" component={AppHome} exact />
           <Route path="/about" component={About} exact />
           <Route path="/features" component={Features} exact />
           <Route path="/register" component={SignUp} exact />

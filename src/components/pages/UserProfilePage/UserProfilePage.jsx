@@ -1,16 +1,22 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React, { useState } from "react";
 import AuthService from "../../../services/auth.service";
-import ProfilePage from "../../organisms/ProfilePage/ProfilePage";
-import { Row, Col, Card, Nav, Container, Form, Button } from "react-bootstrap";
-import { Link, useHistory } from "react-router-dom";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import Card from "react-bootstrap/Card";
+import Nav from "react-bootstrap/Nav";
+import Container from "react-bootstrap/Container";
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
+import { Link, Redirect } from "react-router-dom";
 import { useForm } from "react-hook-form";
 
 export default () => {
   const currentUser = AuthService.getCurrentUser();
+  if (currentUser === undefined) {
+    return <Redirect to="/login" />;
+  }
 
-  const { register, handleSubmit, watch, errors } = useForm();
-  let history = useHistory();
+  const { register, handleSubmit, errors } = useForm();
 
   const [username, setUsername] = useState(currentUser.username);
   const [name, setName] = useState(currentUser.name);
