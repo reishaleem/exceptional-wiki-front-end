@@ -47,7 +47,7 @@ export default () => {
                                 <Link className="nav-link" to={"/profile"}>
                                     My Account
                                 </Link>
-                                <Link className="nav-link" to={"/login"}>
+                                <Link className="nav-link" to={"/login"} onClick={logOut}>
                                     Logout
                                 </Link>
                                 </>

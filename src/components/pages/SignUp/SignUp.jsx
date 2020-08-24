@@ -8,23 +8,12 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {Form as ValidationForm} from "react-validation/build/form";
-import Input from "react-validation/build/input";
-import CheckButton from "react-validation/build/button";
-import { isEmail } from "validator";
 import AuthService from "../../../services/auth.service";
 import { useForm } from "react-hook-form";
-
-// look into doing the submit using the services we've written without even using this validation stuff. i feel like we don't need it.
-
-
 
 export default () => {
     const { register, handleSubmit, watch, errors } = useForm();
     let history = useHistory();
-
-    const form = useRef();
-  const checkBtn = useRef();
 
   const [username, setUsername] = useState("");
   const [name, setName] = useState("")
@@ -59,35 +48,6 @@ export default () => {
     setConfirmPassword(confirmPassword);
   };
 
-  const handleRegister = (e) => {
-    e.preventDefault();
-
-    setMessage("");
-    setSuccessful(false);
-
-    form.current.validateAll();
-
-    if (checkBtn.current.context._errors.length === 0) {
-      AuthService.register(username, email, password).then(
-        (response) => {
-          setMessage(response.data.message);
-          setSuccessful(true);
-        },
-        (error) => {
-          const resMessage =
-            (error.response &&
-              error.response.data &&
-              error.response.data.message) ||
-            error.message ||
-            error.toString();
-
-          setMessage(resMessage);
-          setSuccessful(false);
-        }
-      );
-    }
-  };
-
   const onSubmit = data => {
       setMessage("")
       setSuccessful(false)
@@ -116,30 +76,6 @@ export default () => {
       );
       console.log(data);
   }
-
-    // async function handleClick(event) {
-    //     event.preventDefault();
-    //     const data = new FormData(event.target);
-    //     data.set("username", data.get("username".toLowerCase()));
-    //     data.set("email", data.get("email").toLowerCase());
-    //     console.log(data.get("email"));
-    //     const body = {};
-    //     data.forEach((value, property) => (body[property] = value));
-    //     console.log(body);
-
-    //     const config = {
-    //         headers: { "content-type": "multipart/form-data" },
-    //     };
-
-    //     // axios.post("/register", body)
-    //     // .then(response => {
-    //     //     console.log(response)
-    //     // })
-    //     // .catch(error => {
-    //     //     console.log(error)
-    //     // })
-    //     history.push("/profile"); // kind of want we want...except, we would need to somehow redirect to this specific user's profile...
-    // }
 
     return (
         <div className="register-page">

@@ -9,9 +9,7 @@ import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
-import {Form as ValidationForm} from "react-validation/build/form";
-import Input from "react-validation/build/input";
-import CheckButton from "react-validation/build/button";
+import { useForm } from "react-hook-form";
 import AuthService from "../../../services/auth.service";
 
 const required = (value) => {
@@ -26,8 +24,7 @@ const required = (value) => {
 
 export default () => {
     let history = useHistory()
-    const form = useRef();
-  const checkBtn = useRef();
+    const { register, handleSubmit, watch, errors } = useForm();
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -44,19 +41,14 @@ export default () => {
     setPassword(password);
   };
 
-  const handleLogin = (e) => {
-    e.preventDefault();
+  const onSubmit = data => {
+    setMessage("")
+    setLoading(true)
 
-    setMessage("");
-    setLoading(true);
-
-    form.current.validateAll();
-
-    if (checkBtn.current.context._errors.length === 0) {
-      AuthService.login(username, password).then(
+    AuthService.login(username, password).then(
         () => {
           history.push("/profile");
-          window.location.reload();
+          //window.location.reload();
         },
         (error) => {
           const resMessage =
@@ -70,10 +62,8 @@ export default () => {
           setMessage(resMessage);
         }
       );
-    } else {
-      setLoading(false);
-    }
-  };
+    console.log(data);
+}
 
 
     return (
@@ -84,7 +74,7 @@ export default () => {
                         <h2 className="text-center mb-3">Login</h2>
                         <Card>
                             <Card.Body>
-                                <ValidationForm onSubmit={handleLogin} ref={form}>
+                            <Form onSubmit={handleSubmit(onSubmit)}>
                                     <Form.Group
                                         as={Row}
                                         controlId="formBasicUsername"
@@ -94,7 +84,7 @@ export default () => {
                                             md={4}
                                             className="text-md-right pt-md-2"
                                         >
-                                            Username or Email
+                                            Username
                                         </Form.Label>
                                         <Col md={8}>
                                             <Form.Control
@@ -103,8 +93,9 @@ export default () => {
                                                 name="username"
                                                 value={username}
                                                 onChange={onChangeUsername}
-                                                validations={[required]}
+                                                ref={register({ required: true })}
                                             />
+                                            {errors.name &&  <Form.Text>This field is required</Form.Text>}
                                         </Col>
                                     </Form.Group>
 
@@ -125,8 +116,9 @@ export default () => {
                                                 name="password"
                                                 value={password}
                                                 onChange={onChangePassword}
-                                                validations={[required]}
+                                                ref={register({ required: true })}
                                             />
+                                            {errors.name &&  <Form.Text>This field is required</Form.Text>}
                                         </Col>
                                     </Form.Group>
                                     <Form.Group as={Row}>
@@ -159,6 +151,8 @@ export default () => {
                                             <Link to={"/register"}>
                                                 Don't have an account?
                                             </Link>
+                                            <br />
+                                            <br />
 
                                             {message && (
             <div className="form-group">
@@ -167,10 +161,10 @@ export default () => {
               </div>
             </div>
           )}
-          <CheckButton style={{ display: "none" }} ref={checkBtn} />
+         
                                         </Col>
                                     </Form.Group>
-                                </ValidationForm>
+                                </Form>
                             </Card.Body>
                         </Card>
                     </Col>
