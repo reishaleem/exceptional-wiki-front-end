@@ -23,6 +23,7 @@ export default () => {
     
       const logOut = () => {
         AuthService.logout();
+        //window.location.reload();
       };
 
 
@@ -31,7 +32,7 @@ export default () => {
             <Navbar bg="dark" variant="dark" expand="lg">
                 <Container>
                     <Link className="navbar-brand" to={"/"}>
-                        Exceptional Outlining
+                       Brand
                     </Link>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
@@ -44,12 +45,11 @@ export default () => {
                             </Link>
                             { currentUser ? (
                                 <>
-                                <Link className="nav-link" to={"/profile"}>
+                                <Link className="nav-link" to={"/app/account/profile"}>
                                     My Account
                                 </Link>
-                                <Link className="nav-link" to={"/login"} onClick={logOut}>
-                                    Logout
-                                </Link>
+                                
+                                <Nav.Link href="/login" onClick={logOut}>Logout</Nav.Link>
                                 </>
 
                             ) : (
