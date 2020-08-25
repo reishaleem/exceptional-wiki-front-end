@@ -7,11 +7,16 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import AuthService from "../../../services/auth.service";
 
 export default () => {
+  const currentUser = AuthService.getCurrentUser();
+  if (currentUser) {
+    return <Redirect to="/app/account/profile" />;
+  }
+
   let history = useHistory();
   const { register, handleSubmit, errors } = useForm();
 

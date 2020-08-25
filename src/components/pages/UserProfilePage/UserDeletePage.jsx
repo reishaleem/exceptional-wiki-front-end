@@ -21,23 +21,11 @@ export default () => {
 
   const [successful, setSuccessful] = useState(false);
   const [message, setMessage] = useState("");
-  const [oldPassword, setOldPassword] = useState("");
-  const [newPassword, setNewPassword] = useState("");
-  const [confirmNewPassword, setConfirmNewPassword] = useState("");
+  const [deleteField, setDeleteField] = useState("");
 
-  const onChangeOldPassword = (e) => {
-    const pass = e.target.value;
-    setOldPassword(pass);
-  };
-
-  const onChangeNewPassword = (e) => {
-    const pass = e.target.value;
-    setNewPassword(pass);
-  };
-
-  const onChangeConfirmNewPassword = (e) => {
-    const pass = e.target.value;
-    setConfirmNewPassword(pass);
+  const onChangeDeleteField = (e) => {
+    const val = e.target.value;
+    setDeleteField(val);
   };
 
   // need to configure this endpoint first...
@@ -45,27 +33,27 @@ export default () => {
     setMessage("");
     setSuccessful(false);
 
-    AuthService.updateUserProfile(
-      oldPassword,
-      newPassword,
-      confirmNewPassword
-    ).then(
-      (response) => {
-        setMessage(response.data.message);
-        setSuccessful(true);
-      },
-      (error) => {
-        const resMessage =
-          (error.response &&
-            error.response.data &&
-            error.response.data.message) ||
-          error.message ||
-          error.toString();
+    // AuthService.updateUserProfile(
+    //   oldPassword,
+    //   newPassword,
+    //   confirmNewPassword
+    // ).then(
+    //   (response) => {
+    //     setMessage(response.data.message);
+    //     setSuccessful(true);
+    //   },
+    //   (error) => {
+    //     const resMessage =
+    //       (error.response &&
+    //         error.response.data &&
+    //         error.response.data.message) ||
+    //       error.message ||
+    //       error.toString();
 
-        setMessage(resMessage);
-        setSuccessful(false);
-      }
-    );
+    //     setMessage(resMessage);
+    //     setSuccessful(false);
+    //   }
+    // );
     console.log(data);
   };
 
@@ -78,7 +66,7 @@ export default () => {
             <hr />
             <Card>
               <Card.Header>
-                <Nav justify variant="tabs" defaultActiveKey="security">
+                <Nav justify variant="tabs" defaultActiveKey="delete">
                   <Nav.Item>
                     <Nav.Link eventKey="profile">
                       <Link className="nav-link" to={"/app/account/profile"}>
@@ -107,71 +95,26 @@ export default () => {
                   <Form.Group as={Row} controlId="formBasicName">
                     <Col md={2}></Col>
                     <Col md={8}>
-                      <Form.Label>Current password</Form.Label>
+                      <Card.Text>
+                        To delete your account, type DELETE into the field below
+                        and click the button.
+                      </Card.Text>
                       <Form.Control
-                        type="password"
-                        placeholder="At least 6 characters"
-                        name="oldPassword"
-                        value={oldPassword}
-                        onChange={onChangeOldPassword}
+                        type="text"
+                        placeholder="Type DELETE"
+                        name="deleteField"
+                        value={deleteField}
+                        onChange={onChangeDeleteField}
                         ref={register({
-                          minLength: 6,
-                          maxLength: 129,
+                          validate: {
+                            isDelete: (value) => value === "DELETE",
+                          },
                         })}
                       />
-                      {errors.oldPassword && (
-                        <Form.Text>This field is required</Form.Text>
-                      )}
-                    </Col>
-                    <Col md={2}></Col>
-                  </Form.Group>
-
-                  <Form.Group as={Row} controlId="formBasicUsername">
-                    <Col md={2}></Col>
-                    <Col md={8}>
-                      <Form.Label className="text-md-right pt-md-2">
-                        New password
-                      </Form.Label>
-
-                      <Form.Control
-                        type="password"
-                        placeholder="At least 6 characters"
-                        name="newPassword"
-                        value={newPassword}
-                        onChange={onChangeNewPassword}
-                        ref={register({
-                          minLength: 6,
-                          maxLength: 129,
-                        })}
-                      />
-                      {errors.newPassword && (
-                        <Form.Text>This field is required</Form.Text>
-                      )}
-                    </Col>
-                    <Col md={2}></Col>
-                  </Form.Group>
-
-                  <Form.Group as={Row} controlId="formBasicEmail">
-                    <Col md={2}></Col>
-                    <Col md={8}>
-                      <Form.Label className="text-md-right pt-md-2">
-                        Confirm new password
-                      </Form.Label>
-
-                      <Form.Control
-                        type="password"
-                        placeholder="At least 6 characters"
-                        name="confirmNewPassword"
-                        value={confirmNewPassword}
-                        onChange={onChangeConfirmNewPassword}
-                        ref={register({
-                          minLength: 6,
-                          maxLength: 129,
-                        })}
-                      />
-
-                      {errors.confirmNewPassword && (
-                        <Form.Text>This field is required</Form.Text>
+                      {errors.deleteField && (
+                        <Form.Text>
+                          You must type exactly DELETE to delete your account.
+                        </Form.Text>
                       )}
                     </Col>
                     <Col md={2}></Col>
@@ -181,11 +124,11 @@ export default () => {
                     <Col md={2}></Col>
                     <Col md={8}>
                       <Button
-                        variant="primary"
+                        variant="danger"
                         type="submit"
                         className="float-right"
                       >
-                        Save
+                        DELETE ACCOUNT
                       </Button>
                     </Col>
                     <Col md={2}></Col>

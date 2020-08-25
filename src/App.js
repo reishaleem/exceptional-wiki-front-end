@@ -8,6 +8,7 @@ import { Route, Switch } from "react-router-dom";
 import Container from "react-bootstrap/Container";
 import UserProfilePage from "./components/pages/UserProfilePage/UserProfilePage";
 import UserSecurityPage from "./components/pages/UserProfilePage/UserSecurityPage";
+import UserDeletePage from "./components/pages/UserProfilePage/UserDeletePage";
 import About from "./components/pages/About/About";
 import Navbar from "./components/atoms/Navbar/Navbar";
 import Features from "./components/pages/Features/Features";
@@ -35,6 +36,7 @@ function App() {
             component={UserSecurityPage}
             exact
           />
+          <Route path="/app/account/delete" component={UserDeletePage} exact />
         </Switch>
       </Container>
     </>

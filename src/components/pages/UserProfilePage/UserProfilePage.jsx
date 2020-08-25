@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import AuthService from "../../../services/auth.service";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -12,7 +12,8 @@ import { useForm } from "react-hook-form";
 
 export default () => {
   const currentUser = AuthService.getCurrentUser();
-  if (currentUser === undefined) {
+  if (currentUser === null || currentUser === undefined) {
+    // start organizing code...this can be all pushed into a lower ProfilePage component. Lots of duplicate code.
     return <Redirect to="/login" />;
   }
 
@@ -45,6 +46,7 @@ export default () => {
     setUserBio(bio);
   };
 
+  // need to configure this endpoint...
   const onSubmit = (data) => {
     setMessage("");
     setSuccessful(false);
@@ -96,7 +98,11 @@ export default () => {
                     </Nav.Link>
                   </Nav.Item>
                   <Nav.Item>
-                    <Nav.Link eventKey="delete">Delete</Nav.Link>
+                    <Nav.Link eventKey="delete">
+                      <Link className="nav-link" to={"/app/account/delete"}>
+                        Delete
+                      </Link>
+                    </Nav.Link>
                   </Nav.Item>
                 </Nav>
               </Card.Header>
