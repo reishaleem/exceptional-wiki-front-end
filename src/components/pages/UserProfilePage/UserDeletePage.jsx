@@ -7,15 +7,21 @@ import Nav from "react-bootstrap/Nav";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
-import { Link, Redirect } from "react-router-dom";
+import { Link, Redirect, useHistory } from "react-router-dom";
 import { useForm } from "react-hook-form";
 
 export default () => {
+  let history = useHistory();
   const currentUser = AuthService.getCurrentUser();
   if (currentUser === null || currentUser === undefined) {
     // start organizing code...this can be all pushed into a lower ProfilePage component. Lots of duplicate code.
     return <Redirect to="/login" />;
   }
+
+  const logOut = () => {
+    AuthService.logout();
+    //window.location.reload();
+  };
 
   const { register, handleSubmit, errors } = useForm();
 
@@ -33,27 +39,25 @@ export default () => {
     setMessage("");
     setSuccessful(false);
 
-    // AuthService.updateUserProfile(
-    //   oldPassword,
-    //   newPassword,
-    //   confirmNewPassword
-    // ).then(
-    //   (response) => {
-    //     setMessage(response.data.message);
-    //     setSuccessful(true);
-    //   },
-    //   (error) => {
-    //     const resMessage =
-    //       (error.response &&
-    //         error.response.data &&
-    //         error.response.data.message) ||
-    //       error.message ||
-    //       error.toString();
+    AuthService.deleteUser(currentUser.id).then(
+      (response) => {
+        setMessage(response.data.message);
+        setSuccessful(true);
+        logOut();
+        history.push("/login");
+      },
+      (error) => {
+        const resMessage =
+          (error.response &&
+            error.response.data &&
+            error.response.data.message) ||
+          error.message ||
+          error.toString();
 
-    //     setMessage(resMessage);
-    //     setSuccessful(false);
-    //   }
-    // );
+        setMessage(resMessage);
+        setSuccessful(false);
+      }
+    );
     console.log(data);
   };
 

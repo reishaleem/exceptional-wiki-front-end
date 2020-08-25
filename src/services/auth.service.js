@@ -42,6 +42,11 @@ const updateUserSecurity = (id, oldPassword, newPassword) => {
   });
 };
 
+const deleteUser = (id) => {
+  console.log(id);
+  return axios.delete(API_URL + `delete_user/${id}`);
+};
+
 const logout = () => {
   localStorage.removeItem("user");
 };
@@ -55,6 +60,7 @@ export default {
   login,
   updateUserProfile,
   updateUserSecurity,
+  deleteUser,
   logout,
   getCurrentUser,
 };
