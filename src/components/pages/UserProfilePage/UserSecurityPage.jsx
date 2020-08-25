@@ -45,14 +45,17 @@ export default () => {
     setMessage("");
     setSuccessful(false);
 
-    AuthService.updateUserProfile(
+    // check that password and confirm password match? Or do we do that in the backend??
+
+    AuthService.updateUserSecurity(
+      currentUser.id,
       oldPassword,
-      newPassword,
-      confirmNewPassword
+      newPassword
     ).then(
       (response) => {
         setMessage(response.data.message);
         setSuccessful(true);
+        // need to somehow log user out then back in, so that the new password officially takes effect...same issue as update profile...
       },
       (error) => {
         const resMessage =

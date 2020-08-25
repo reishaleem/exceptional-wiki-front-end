@@ -53,10 +53,17 @@ export default () => {
     console.log(username);
     console.log(email);
 
-    AuthService.updateUserProfile(username, email, name, userBio).then(
+    AuthService.updateUserProfile(
+      currentUser.id,
+      username,
+      name,
+      email,
+      userBio
+    ).then(
       (response) => {
         setMessage(response.data.message);
         setSuccessful(true);
+        // need to somehow update the token so that the user's NEW information is shown, without forcing them to log out first...
       },
       (error) => {
         const resMessage =
@@ -179,6 +186,7 @@ export default () => {
                       <Form.Label>Bio</Form.Label>
                       <Form.Control
                         as="textarea"
+                        name="userBio"
                         rows="3"
                         maxLength="255"
                         value={userBio}

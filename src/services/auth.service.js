@@ -24,12 +24,21 @@ const login = async (username, password) => {
   return response.data;
 };
 
-const updateUserProfile = (username, name, email, bio) => {
-  return axios.put(API_URL + "update", {
+const updateUserProfile = (id, username, name, email, bio) => {
+  return axios.put(API_URL + "update_profile", {
+    id,
     username,
     name,
     email,
     bio,
+  });
+};
+
+const updateUserSecurity = (id, oldPassword, newPassword) => {
+  return axios.put(API_URL + "update_security", {
+    id,
+    oldPassword,
+    newPassword,
   });
 };
 
@@ -44,6 +53,8 @@ const getCurrentUser = () => {
 export default {
   register,
   login,
+  updateUserProfile,
+  updateUserSecurity,
   logout,
   getCurrentUser,
 };
