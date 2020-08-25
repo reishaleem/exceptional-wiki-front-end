@@ -6,21 +6,34 @@ import * as serviceWorker from "./serviceWorker";
 import { BrowserRouter } from "react-router-dom";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import {
-    faUserPlus,
-    faGlobeAmericas,
-    faTools,
-    faPen,
+  faUserPlus,
+  faGlobeAmericas,
+  faTools,
+  faPen,
+  faAngleDown,
+  faHome,
+  faUserCircle,
+  faSignOutAlt,
 } from "@fortawesome/free-solid-svg-icons";
 
-library.add(faUserPlus, faGlobeAmericas, faTools, faPen);
+library.add(
+  faUserPlus,
+  faGlobeAmericas,
+  faTools,
+  faPen,
+  faAngleDown,
+  faHome,
+  faUserCircle,
+  faSignOutAlt
+);
 
 ReactDOM.render(
-    <React.StrictMode>
-        <BrowserRouter>
-            <App />
-        </BrowserRouter>
-    </React.StrictMode>,
-    document.getElementById("root")
+  <React.StrictMode>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  </React.StrictMode>,
+  document.getElementById("root")
 );
 
 // If you want your app to work offline and load faster, you can change

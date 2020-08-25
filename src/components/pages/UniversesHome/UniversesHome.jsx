@@ -4,8 +4,10 @@ import { Redirect, Link } from "react-router-dom";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Nav from "react-bootstrap/Nav";
-import ListGroup from "react-bootstrap/ListGroup";
 import NavItem from "react-bootstrap/NavItem";
+
+import ListGroup from "react-bootstrap/ListGroup";
+
 import Card from "react-bootstrap/Card";
 import "../../../Sidebar.css";
 import Forest from "../../../images/floating-forest.jpg";
@@ -24,7 +26,12 @@ export default () => {
       <Row>
         <Col md={2}>
           <Sidebar>
-            <ListGroup.Item as={Link} to={"/app/universes"} action>
+            <ListGroup.Item
+              as={Link}
+              to={"/app/universes"}
+              action
+              variant="dark"
+            >
               Universes
             </ListGroup.Item>
             <ListGroup.Item as={Link} to={"/app/wikis"} action>
@@ -33,7 +40,7 @@ export default () => {
           </Sidebar>
         </Col>
         <Col md={10}>
-          <h1>App Home</h1>
+          <h1>Universes</h1>
         </Col>
       </Row>
     </>

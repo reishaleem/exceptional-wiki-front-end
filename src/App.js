@@ -12,7 +12,8 @@ import UserDeletePage from "./components/pages/UserProfilePage/UserDeletePage";
 import About from "./components/pages/About/About";
 import Navbar from "./components/atoms/Navbar/Navbar";
 import Features from "./components/pages/Features/Features";
-import AppHome from "./components/pages/AppHome/AppHome";
+import AppHome from "./components/pages/AppHome/AppHome.jsx";
+import UniversesHome from "./components/pages/UniversesHome/UniversesHome";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <Switch>
           <Route path="/" component={MainHome} exact />
           <Route path="/app" component={AppHome} exact />
+          <Route path="/app/universes" component={UniversesHome} exact />
           <Route path="/about" component={About} exact />
           <Route path="/features" component={Features} exact />
           <Route path="/register" component={SignUp} exact />
