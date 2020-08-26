@@ -57,52 +57,17 @@ export default () => {
             <Container style={{ maxWidth: "1185px" }}>
               <Row style={{ paddingBottom: "15px" }}>
                 <Col md={3}>
-                  <Link to={"/app/universes/new"}>
-                    <Button variant="primary" size="lg" block className="mb-4">
-                      Create Universe
-                    </Button>
-                  </Link>
-                  <Form.Group controlId="universeSearch">
-                    <FormControl type="text" placeholder="Search" />
-                  </Form.Group>
-                  <Form.Group controlId="universeSort">
-                    <Form.Label>Sort By</Form.Label>
-                    <Form.Control as="select" custom>
-                      <option>Most recent</option>
-                      <option>Name (A-Z)</option>
-                      <option>Name (Z-A)</option>
-                      <option>Newest</option>
-                      <option>Oldest</option>
-                    </Form.Control>
-                  </Form.Group>
+                  <p>
+                    Maybe a picture for the thumbnail of the universe, then
+                    underneath that, maybe a genre thing. Not sure if needed
+                    there. Can instead do created date.
+                  </p>
                 </Col>
                 <Col md={9}>
-                  <h1>Map each user universe below to a card like this</h1>
-                  <Card>
-                    <Card.Header as="h5">Universe Name</Card.Header>
-                    <Card.Body>
-                      <Card.Title>Description</Card.Title>
-                      <Card.Text>Universe description</Card.Text>
-                      <Button variant="primary">Go somewhere</Button>
-                    </Card.Body>
-                    <Card.Footer className="text-muted d-flex">
-                      Created - Aug 24, 2020 - Updated 9:53pm Aug 25, 2020
-                      <div className="spacer"></div>
-                      <Link to={"#edit"} className="pr-3">
-                        <FontAwesomeIcon
-                          icon="pen"
-                          className="pr-1"
-                          size="lg"
-                        ></FontAwesomeIcon>
-                      </Link>
-                      <Link to={"#delete"}>
-                        <FontAwesomeIcon
-                          icon="trash-alt"
-                          size="lg"
-                        ></FontAwesomeIcon>
-                      </Link>
-                    </Card.Footer>
-                  </Card>
+                  <h1>
+                    Make a basic form below for entering a new universe. Add a
+                    cancel and submit button at the end.
+                  </h1>
                 </Col>
               </Row>
             </Container>
