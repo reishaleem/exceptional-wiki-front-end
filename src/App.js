@@ -10,37 +10,29 @@ import UserProfilePage from "./components/pages/UserProfilePage/UserProfilePage"
 import UserSecurityPage from "./components/pages/UserProfilePage/UserSecurityPage";
 import UserDeletePage from "./components/pages/UserProfilePage/UserDeletePage";
 import About from "./components/pages/About/About";
-import Navbar from "./components/atoms/Navbar/Navbar";
 import Features from "./components/pages/Features/Features";
-import AppHome from "./components/pages/AppHome/AppHome.jsx";
-import UniversesHome from "./components/pages/UniversesHome/UniversesHome";
+import AppHome from "./components/pages/AppFrontPage/AppHome";
+import UniversesHome from "./components/pages/AppFrontPage/UniversesHome";
 
 function App() {
   return (
     <>
-      <Navbar />
-      <Container fluid>
-        <Switch>
-          <Route path="/" component={MainHome} exact />
-          <Route path="/app" component={AppHome} exact />
-          <Route path="/app/universes" component={UniversesHome} exact />
-          <Route path="/about" component={About} exact />
-          <Route path="/features" component={Features} exact />
-          <Route path="/register" component={SignUp} exact />
-          <Route path="/login" component={SignIn} exact />
-          <Route
-            path="/app/account/profile"
-            component={UserProfilePage}
-            exact
-          />
-          <Route
-            path="/app/account/security"
-            component={UserSecurityPage}
-            exact
-          />
-          <Route path="/app/account/delete" component={UserDeletePage} exact />
-        </Switch>
-      </Container>
+      <Switch>
+        <Route path="/" component={MainHome} exact />
+        <Route path="/app" component={AppHome} exact />
+        <Route path="/app/universes" component={UniversesHome} exact />
+        <Route path="/about" component={About} exact />
+        <Route path="/features" component={Features} exact />
+        <Route path="/register" component={SignUp} exact />
+        <Route path="/login" component={SignIn} exact />
+        <Route path="/app/account/profile" component={UserProfilePage} exact />
+        <Route
+          path="/app/account/security"
+          component={UserSecurityPage}
+          exact
+        />
+        <Route path="/app/account/delete" component={UserDeletePage} exact />
+      </Switch>
     </>
   );
 }

@@ -11,7 +11,16 @@ const Side = ({ children }) => {
 
   return (
     <>
-      <Card style={{ width: "18rem" }}>
+      <Card
+        style={{
+          height: "100vh",
+          top: "0px",
+          maxHeight: "calc(100% + 0px)",
+          transform: "translateX(0%)",
+          width: "256px",
+          position: "fixed",
+        }}
+      >
         <Card.Img variant="top" src={Forest} />
         <Card
           onClick={() => setOpen(!open)}
@@ -22,8 +31,8 @@ const Side = ({ children }) => {
             <div className="sidebarDropdownHeader">
               {currentUser.name}
               <FontAwesomeIcon
-                icon="angle-down"
-                className="pl-1"
+                icon="chevron-down"
+                className="pl-1 down-arrow"
               ></FontAwesomeIcon>
             </div>
           </ListGroup.Item>

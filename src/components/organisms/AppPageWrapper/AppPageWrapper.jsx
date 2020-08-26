@@ -10,8 +10,9 @@ import Card from "react-bootstrap/Card";
 import "../../../Sidebar.css";
 import Forest from "../../../images/floating-forest.jpg";
 import Sidebar from "../../atoms/Sidebar/Sidebar";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-export default () => {
+export default ({ children }) => {
   const [isVisible, setIsVisible] = useState(true);
   const currentUser = AuthService.getCurrentUser();
   if (currentUser === null || currentUser === undefined) {
@@ -25,16 +26,24 @@ export default () => {
         <Col md={2}>
           <Sidebar>
             <ListGroup.Item as={Link} to={"/app/universes"} action>
+              <FontAwesomeIcon
+                icon="globe"
+                className="pr-1"
+                size="lg"
+              ></FontAwesomeIcon>
               Universes
             </ListGroup.Item>
             <ListGroup.Item as={Link} to={"/app/wikis"} action>
+              <FontAwesomeIcon
+                icon="book"
+                className="pr-1"
+                size="lg"
+              ></FontAwesomeIcon>
               Wikis
             </ListGroup.Item>
           </Sidebar>
         </Col>
-        <Col md={10}>
-          <h1>App Home</h1>
-        </Col>
+        <Col md={10}>{children}</Col>
       </Row>
     </>
   );

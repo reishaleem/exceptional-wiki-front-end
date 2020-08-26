@@ -14,6 +14,9 @@ import {
   faHome,
   faUserCircle,
   faSignOutAlt,
+  faChevronDown,
+  faGlobe,
+  faBook,
 } from "@fortawesome/free-solid-svg-icons";
 
 library.add(
@@ -24,7 +27,10 @@ library.add(
   faAngleDown,
   faHome,
   faUserCircle,
-  faSignOutAlt
+  faSignOutAlt,
+  faChevronDown,
+  faGlobe,
+  faBook
 );
 
 ReactDOM.render(

@@ -10,3 +10,7 @@
   flex: 1 1;
   overflow: hidden;
 }
+
+.card[aria-expanded="true"] .down-arrow {
+  transform: rotate(-180deg);
+}
