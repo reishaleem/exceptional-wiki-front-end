@@ -17,6 +17,9 @@ import {
   faChevronDown,
   faGlobe,
   faBook,
+  faBell,
+  faBullhorn,
+  faPlus,
 } from "@fortawesome/free-solid-svg-icons";
 
 library.add(
@@ -30,7 +33,10 @@ library.add(
   faSignOutAlt,
   faChevronDown,
   faGlobe,
-  faBook
+  faBook,
+  faBell,
+  faBullhorn,
+  faPlus
 );
 
 ReactDOM.render(

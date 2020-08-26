@@ -1,5 +1,12 @@
 import React, { useState } from "react";
-import { Nav, Card, ListGroup, Button, Collapse } from "react-bootstrap";
+import {
+  Nav,
+  Card,
+  ListGroup,
+  Button,
+  Collapse,
+  Accordion,
+} from "react-bootstrap";
 import { withRouter, Link } from "react-router-dom";
 import Forest from "../../../images/floating-forest.jpg";
 import AuthService from "../../../services/auth.service";
@@ -9,6 +16,7 @@ const Side = ({ children }) => {
   const [open, setOpen] = useState(false);
   const currentUser = AuthService.getCurrentUser(); // no need to check if null, sidebar only renders in App
 
+  //potentially use an Accordion component, instead of this dropdown one for the user account/app/signout stuff
   return (
     <>
       <Card
@@ -22,6 +30,7 @@ const Side = ({ children }) => {
         }}
       >
         <Card.Img variant="top" src={Forest} />
+
         <Card
           onClick={() => setOpen(!open)}
           aria-controls="sidebarDropdown"

@@ -12,7 +12,7 @@ import Card from "react-bootstrap/Card";
 import "../../../Sidebar.css";
 import Forest from "../../../images/floating-forest.jpg";
 import Sidebar from "../../atoms/Sidebar/Sidebar";
-import Navbar from "../../atoms/Navbar/Navbar";
+import AppNavbar from "../../atoms/Navbar/AppNavbar";
 
 export default () => {
   const [isVisible, setIsVisible] = useState(true);
@@ -25,6 +25,7 @@ export default () => {
   return (
     <>
       <Container fluid style={{ paddingLeft: "0px" }}>
+        <AppNavbar />
         <Row>
           <Col md={2}>
             <Sidebar>
@@ -51,8 +52,7 @@ export default () => {
               </ListGroup.Item>
             </Sidebar>
           </Col>
-          <Col md={10}>
-            <Navbar />
+          <Col md={10} className="app-page-main-content">
             <h1>Universes</h1>
           </Col>
         </Row>

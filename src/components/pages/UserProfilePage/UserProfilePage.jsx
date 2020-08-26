@@ -13,6 +13,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link, Redirect } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import Navbar from "../../atoms/Navbar/Navbar";
+import AppNavbar from "../../atoms/Navbar/AppNavbar";
 
 export default () => {
   const currentUser = AuthService.getCurrentUser();
@@ -87,6 +88,7 @@ export default () => {
   return (
     <>
       <Container fluid style={{ paddingLeft: "0px" }}>
+        <AppNavbar />
         <Row>
           <Col md={2}>
             <Sidebar>
@@ -108,8 +110,7 @@ export default () => {
               </ListGroup.Item>
             </Sidebar>
           </Col>
-          <Col md={10}>
-            <Navbar />
+          <Col md={10} className="app-page-main-content">
             <Container className="profile-padding py-3">
               <Row>
                 <Col>
