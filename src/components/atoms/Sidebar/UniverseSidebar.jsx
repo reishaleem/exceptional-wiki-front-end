@@ -1,12 +1,7 @@
 import React, { useState } from "react";
-import {
-  Nav,
-  Card,
-  ListGroup,
-  Button,
-  Collapse,
-  Accordion,
-} from "react-bootstrap";
+import Card from "react-bootstrap/Card";
+import ListGroup from "react-bootstrap/ListGroup";
+import Accordion from "react-bootstrap/Accordion";
 import { withRouter, Link } from "react-router-dom";
 import Forest from "../../../images/floating-forest.jpg";
 import AuthService from "../../../services/auth.service";

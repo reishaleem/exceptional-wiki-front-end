@@ -56,7 +56,7 @@ export default () => {
                   <Card style={{ width: "18rem" }}>
                     <Card.Header>Recent</Card.Header>
 
-                    <Card.Text
+                    <div
                       className="text-center align-middle"
                       style={{ margin: "0", padding: "8px" }}
                     >
@@ -71,8 +71,8 @@ export default () => {
                         >
                           <FontAwesomeIcon
                             icon="plus"
-                            className="pr-1"
-                            size="md"
+                            className="mr-2"
+                            size="sm"
                           ></FontAwesomeIcon>
                           Wiki
                         </Button>
@@ -82,14 +82,14 @@ export default () => {
                           <Button variant="outline-dark" size="sm">
                             <FontAwesomeIcon
                               icon="plus"
-                              className="pr-1"
-                              size="md"
+                              className="mr-1"
+                              size="sm"
                             ></FontAwesomeIcon>
                             Universe
                           </Button>
                         </Link>
                       </ButtonGroup>
-                    </Card.Text>
+                    </div>
 
                     <ListGroup variant="flush">
                       <ListGroup.Item>

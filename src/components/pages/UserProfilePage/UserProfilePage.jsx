@@ -41,8 +41,6 @@ export default () => {
     );
   }, []);
 
-  console.log("hi");
-
   const { register, handleSubmit, errors } = useForm();
 
   const onChangeUsername = (e) => {
