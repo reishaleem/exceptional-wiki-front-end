@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import AuthService from "../../../services/auth.service";
+import UserService from "../../../services/user.service";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
@@ -30,7 +31,7 @@ export default () => {
   const [userBio, setUserBio] = useState("");
 
   useEffect(() => {
-    const userDetails = AuthService.getUserDetails(currentUser.id).then(
+    const userDetails = UserService.getUserDetails(currentUser.id).then(
       (response) => {
         setUsername(response.data.username);
         setName(response.data.name);
@@ -71,7 +72,7 @@ export default () => {
     console.log(username);
     console.log(email);
 
-    AuthService.updateUserProfile(
+    UserService.updateUserProfile(
       currentUser.id,
       username,
       name,

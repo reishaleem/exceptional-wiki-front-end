@@ -14,3 +14,7 @@
 .card[aria-expanded="true"] .down-arrow {
   transform: rotate(-180deg);
 }
+
+.bottom-shadow {
+  box-shadow: 0 4px 2px -2px gray;
+}

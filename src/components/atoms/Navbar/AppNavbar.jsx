@@ -1,27 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import { Link } from "react-router-dom";
-import { Container } from "react-bootstrap";
-import AuthService from "../../../services/auth.service";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default () => {
-  const [currentUser, setCurrentUser] = useState(undefined);
-
-  useEffect(() => {
-    const user = AuthService.getCurrentUser();
-
-    if (user) {
-      setCurrentUser(user);
-    }
-  }, []);
-
-  const logOut = () => {
-    AuthService.logout();
-    //window.location.reload();
-  };
-
   return (
     <>
       <Navbar

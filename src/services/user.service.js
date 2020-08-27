@@ -1,27 +1,22 @@
 import axios from "axios";
 import authHeader from "./auth-header";
 
-const API_URL = "http://localhost:8080/api/test/";
+const API_URL = "http://localhost:8080/users/";
 
-const getPublicContent = () => {
-  return axios.get(API_URL + "all");
+const getUserDetails = async (id) => {
+  return axios.get(API_URL + `${id}/details`);
 };
 
-const getUserBoard = () => {
-  return axios.get(API_URL + "user", { headers: authHeader() });
-};
-
-const getModeratorBoard = () => {
-  return axios.get(API_URL + "mod", { headers: authHeader() });
-};
-
-const getAdminBoard = () => {
-  return axios.get(API_URL + "admin", { headers: authHeader() });
+const updateUserProfile = (id, username, name, email, bio) => {
+  return axios.put(API_URL + `${id}/update_profile`, {
+    username,
+    name,
+    email,
+    bio,
+  });
 };
 
 export default {
-  getPublicContent,
-  getUserBoard,
-  getModeratorBoard,
-  getAdminBoard,
+  getUserDetails,
+  updateUserProfile,
 };

@@ -16,6 +16,11 @@ const Side = ({ children }) => {
   const [open, setOpen] = useState(false);
   const currentUser = AuthService.getCurrentUser(); // no need to check if null, sidebar only renders in App
 
+  const logOut = () => {
+    AuthService.logout();
+    //window.location.reload();
+  };
+
   //potentially use an Accordion component, instead of this dropdown one for the user account/app/signout stuff
   return (
     <>
@@ -31,51 +36,69 @@ const Side = ({ children }) => {
       >
         <Card.Img variant="top" src={Forest} />
 
-        <Card
-          onClick={() => setOpen(!open)}
-          aria-controls="sidebarDropdown"
-          aria-expanded={open}
-        >
-          <ListGroup.Item action>
-            <div className="sidebarDropdownHeader">
-              {currentUser.name}
-              <FontAwesomeIcon
-                icon="chevron-down"
-                className="pl-1 down-arrow"
-              ></FontAwesomeIcon>
-            </div>
-          </ListGroup.Item>
-          <Collapse in={open}>
-            <div>
-              <ListGroup variant="flush">
-                <ListGroup.Item as={Link} to={"/app"} action>
-                  <FontAwesomeIcon
-                    icon="home"
-                    className="pr-1"
-                    size="lg"
-                  ></FontAwesomeIcon>
-                  App
-                </ListGroup.Item>
-                <ListGroup.Item as={Link} to={"/app/account/profile"} action>
-                  <FontAwesomeIcon
-                    icon="user-circle"
-                    className="pr-1"
-                    size="lg"
-                  ></FontAwesomeIcon>
-                  My Account
-                </ListGroup.Item>
-                <ListGroup.Item as={Link} to={"/"} action>
-                  <FontAwesomeIcon
-                    icon="sign-out-alt"
-                    className="pr-1"
-                    size="lg"
-                  ></FontAwesomeIcon>
-                  Sign out
-                </ListGroup.Item>
-              </ListGroup>
-            </div>
-          </Collapse>
-        </Card>
+        <Accordion>
+          <Accordion.Toggle
+            as={ListGroup.Item}
+            action
+            eventKey="0"
+            className="d-flex bottom-shadow"
+          >
+            <FontAwesomeIcon
+              icon="globe"
+              className="mr-2"
+              size="lg"
+            ></FontAwesomeIcon>
+            {currentUser.name}
+            <div className="spacer"></div>
+            <FontAwesomeIcon
+              icon="chevron-down"
+              className="down-arrow"
+            ></FontAwesomeIcon>
+          </Accordion.Toggle>
+
+          <Accordion.Collapse eventKey="0">
+            <ListGroup variant="flush">
+              <ListGroup.Item as={Link} to={"/app"} action className="border-0">
+                <FontAwesomeIcon
+                  icon="home"
+                  className="pr-1"
+                  size="lg"
+                  className="mr-2"
+                ></FontAwesomeIcon>
+                App
+              </ListGroup.Item>
+              <ListGroup.Item
+                as={Link}
+                to={"/app/account/profile"}
+                action
+                className="border-0"
+              >
+                <FontAwesomeIcon
+                  icon="user-circle"
+                  className="pr-1"
+                  size="lg"
+                  className="mr-2"
+                ></FontAwesomeIcon>
+                My Account
+              </ListGroup.Item>
+              <ListGroup.Item
+                as={Link}
+                to={"/"}
+                action
+                className="border-0"
+                onClick={logOut}
+              >
+                <FontAwesomeIcon
+                  icon="sign-out-alt"
+                  className="pr-1"
+                  size="lg"
+                  className="mr-2"
+                ></FontAwesomeIcon>
+                Sign out
+              </ListGroup.Item>
+            </ListGroup>
+          </Accordion.Collapse>
+        </Accordion>
 
         <ListGroup variant="flush">
           <Accordion defaultActiveKey="0">

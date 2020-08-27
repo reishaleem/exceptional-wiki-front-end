@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:8080/api/users/";
+const API_URL = "http://localhost:8080/users/";
 
 const register = (username, email, name, password, bio) => {
   return axios.post(API_URL + "register", {
@@ -10,10 +10,6 @@ const register = (username, email, name, password, bio) => {
     password,
     bio,
   });
-};
-
-const getUserDetails = async (id) => {
-  return axios.get(API_URL + `${id}/details`);
 };
 
 const login = async (username, password) => {
@@ -26,15 +22,6 @@ const login = async (username, password) => {
   }
   console.log("logged in");
   return response.data;
-};
-
-const updateUserProfile = (id, username, name, email, bio) => {
-  return axios.put(API_URL + `${id}/update_profile`, {
-    username,
-    name,
-    email,
-    bio,
-  });
 };
 
 const updateUserSecurity = (id, oldPassword, newPassword) => {
@@ -60,10 +47,8 @@ const getCurrentUser = () => {
 export default {
   register,
   login,
-  updateUserProfile,
   updateUserSecurity,
   deleteUser,
   logout,
   getCurrentUser,
-  getUserDetails,
 };
