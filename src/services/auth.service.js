@@ -12,6 +12,10 @@ const register = (username, email, name, password, bio) => {
   });
 };
 
+const getUserDetails = async (id) => {
+  return axios.get(API_URL + `${id}/details`);
+};
+
 const login = async (username, password) => {
   const response = await axios.post(API_URL + "login", {
     username,
@@ -25,8 +29,7 @@ const login = async (username, password) => {
 };
 
 const updateUserProfile = (id, username, name, email, bio) => {
-  return axios.put(API_URL + "update_profile", {
-    id,
+  return axios.put(API_URL + `${id}/update_profile`, {
     username,
     name,
     email,
@@ -35,8 +38,7 @@ const updateUserProfile = (id, username, name, email, bio) => {
 };
 
 const updateUserSecurity = (id, oldPassword, newPassword) => {
-  return axios.put(API_URL + "update_security", {
-    id,
+  return axios.put(API_URL + `${id}/update_security`, {
     oldPassword,
     newPassword,
   });
@@ -44,7 +46,7 @@ const updateUserSecurity = (id, oldPassword, newPassword) => {
 
 const deleteUser = (id) => {
   console.log(id);
-  return axios.delete(API_URL + `delete_user/${id}`);
+  return axios.delete(API_URL + `${id}/delete_user`);
 };
 
 const logout = () => {
@@ -63,4 +65,5 @@ export default {
   deleteUser,
   logout,
   getCurrentUser,
+  getUserDetails,
 };

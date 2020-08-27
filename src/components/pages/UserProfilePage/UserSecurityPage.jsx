@@ -156,7 +156,6 @@ export default () => {
                             <Form.Label>Current password</Form.Label>
                             <Form.Control
                               type="password"
-                              placeholder="At least 6 characters"
                               name="oldPassword"
                               value={oldPassword}
                               onChange={onChangeOldPassword}
@@ -206,7 +205,6 @@ export default () => {
 
                             <Form.Control
                               type="password"
-                              placeholder="At least 6 characters"
                               name="confirmNewPassword"
                               value={confirmNewPassword}
                               onChange={onChangeConfirmNewPassword}

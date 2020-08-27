@@ -22,14 +22,27 @@ export default () => {
     return <Redirect to="/login" />;
   }
 
-  const { register, handleSubmit, errors } = useForm();
-
-  const [username, setUsername] = useState(currentUser.username);
-  const [name, setName] = useState(currentUser.name);
-  const [email, setEmail] = useState(currentUser.email);
+  const [username, setUsername] = useState("");
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
   const [successful, setSuccessful] = useState(false);
   const [message, setMessage] = useState("");
-  const [userBio, setUserBio] = useState(currentUser.bio);
+  const [userBio, setUserBio] = useState("");
+
+  useEffect(() => {
+    const userDetails = AuthService.getUserDetails(currentUser.id).then(
+      (response) => {
+        setUsername(response.data.username);
+        setName(response.data.name);
+        setEmail(response.data.email);
+        setUserBio(response.data.bio);
+      }
+    );
+  }, []);
+
+  console.log("hi");
+
+  const { register, handleSubmit, errors } = useForm();
 
   const onChangeUsername = (e) => {
     const username = e.target.value;
