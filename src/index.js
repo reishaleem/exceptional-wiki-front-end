@@ -21,6 +21,16 @@ import {
   faBullhorn,
   faPlus,
   faTrashAlt,
+  faCompass,
+  faHourglassHalf,
+  faSitemap,
+  faCog,
+  faFeatherAlt,
+  faFolder,
+  faPalette,
+  faStickyNote,
+  faFlask,
+  faEdit,
 } from "@fortawesome/free-solid-svg-icons";
 
 library.add(
@@ -38,7 +48,17 @@ library.add(
   faBell,
   faBullhorn,
   faPlus,
-  faTrashAlt
+  faTrashAlt,
+  faCompass,
+  faHourglassHalf,
+  faSitemap,
+  faCog,
+  faFeatherAlt,
+  faFolder,
+  faPalette,
+  faStickyNote,
+  faFlask,
+  faEdit
 );
 
 ReactDOM.render(

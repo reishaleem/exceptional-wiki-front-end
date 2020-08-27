@@ -14,6 +14,7 @@ import Features from "./components/pages/Features/Features";
 import AppHome from "./components/pages/AppFrontPage/AppHome";
 import UniversesHome from "./components/pages/AppFrontPage/UniversesHome";
 import NewUniverse from "./components/pages/UniversePage/NewUniverse";
+import UniverseHomePage from "./components/pages/UniversePage/UniverseHomePage";
 
 function App() {
   return (
@@ -23,6 +24,11 @@ function App() {
         <Route path="/app" component={AppHome} exact />
         <Route path="/app/universes" component={UniversesHome} exact />
         <Route path="/app/universes/new" component={NewUniverse} exact />
+        <Route
+          path="/app/universes/:universeId"
+          component={UniverseHomePage}
+          exact
+        />
         <Route path="/about" component={About} exact />
         <Route path="/features" component={Features} exact />
         <Route path="/register" component={SignUp} exact />

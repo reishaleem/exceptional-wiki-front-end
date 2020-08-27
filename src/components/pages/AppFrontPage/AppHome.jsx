@@ -78,14 +78,16 @@ export default () => {
                         </Button>
                       </ButtonGroup>
                       <ButtonGroup aria-label="Basic example" className="mr-2">
-                        <Button variant="outline-dark" size="sm">
-                          <FontAwesomeIcon
-                            icon="plus"
-                            className="pr-1"
-                            size="md"
-                          ></FontAwesomeIcon>
-                          Universe
-                        </Button>
+                        <Link to={"/app/universes/new"}>
+                          <Button variant="outline-dark" size="sm">
+                            <FontAwesomeIcon
+                              icon="plus"
+                              className="pr-1"
+                              size="md"
+                            ></FontAwesomeIcon>
+                            Universe
+                          </Button>
+                        </Link>
                       </ButtonGroup>
                     </Card.Text>
 
