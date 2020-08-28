@@ -17,7 +17,6 @@ import AppFrontPageWrapper from "../../../organisms/Wrappers/AppFrontPageWrapper
 export default () => {
   const currentUser = AuthService.getCurrentUser();
   if (currentUser === null || currentUser === undefined) {
-    // start organizing code...this can be all pushed into a lower ProfilePage component. Lots of duplicate code.
     return <Redirect to="/login" />;
   }
 

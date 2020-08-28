@@ -1,68 +1,41 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+# The Exceptional Outliner
 
-In the project directory, you can run:
+## Contents
 
-### `npm start`
+- [About](#about)
+- [Tools and Technologies used](#tools-and-technologies-used)
+- [Implemented features](#implemented-features)
+- [Planned features](#planned-features)
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## About
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+This is the front-end of a web application that uses React, Spring Boot, and MongoDB. This application currently allows users to create accounts in order to create wiki-styled articles for aspects of their stories. The articles can be about anything, from characters to locations to events. The back end can be found [here](https://github.com/reishaleem/exceptional-wiki-back-end).
 
-### `npm test`
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Tools and Technologies used
 
-### `npm run build`
+In this front-end, the key technologies and dependencies used are:
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- React
+- Bootstrap
+- axios
+- react-router
+- react-hook-form. This is mainly how some basic validation is done.
+- Atomic Design. I don't adhere to the principles _perfectly_, but I try to make an effort.
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+## Implemented features
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+So far, the features implemented in this front-end are:
 
-### `npm run eject`
+- Screens for CRUD operations on Users
+- Screens for public information, routing, as well as redirects to avoid logged out users from accessing pages that require being logged in
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Planned features
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Some features that will be implemented are:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+- Screens for CRUD operations on several other models, with Universe and Wiki getting priority
+- A screen for the Generator
