@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Redirect, Link } from "react-router-dom";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -10,6 +10,8 @@ import Card from "react-bootstrap/Card";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import AuthService from "../../../../services/auth.service";
+import UserService from "../../../../services/user.service";
+import UniverseService from "../../../../services/universe.service";
 import AppNavbar from "../../../atoms/Navbar/AppNavbar";
 import AppFrontPageWrapper from "../../../organisms/Wrappers/AppFrontPageWrapper";
 
@@ -17,6 +19,21 @@ export default () => {
   const currentUser = AuthService.getCurrentUser();
   if (currentUser === null || currentUser === undefined) {
     return <Redirect to="/login" />;
+  }
+
+  const [universes, setUniverses] = useState([]);
+
+  useEffect(() => {
+    UserService.getUserUniverseList(currentUser.id).then((response) => {
+      setUniverses(response.data);
+    });
+  }, [currentUser.id]);
+  console.log(universes);
+
+  function test() {
+    universes.forEach((element) => {
+      console.log(element);
+    });
   }
 
   return (
@@ -50,32 +67,43 @@ export default () => {
               </Form>
             </Col>
             <Col md={9}>
-              <h1>Map each user universe below to a card like this</h1>
-              <Card>
-                <Card.Header as="h5">Universe Name</Card.Header>
-                <Card.Body>
-                  <Card.Title>Description</Card.Title>
-                  <Card.Text>Universe description</Card.Text>
-                  <Button variant="primary">Go somewhere</Button>
-                </Card.Body>
-                <Card.Footer className="text-muted d-flex">
-                  Created - Aug 24, 2020 - Updated 9:53pm Aug 25, 2020
-                  <div className="spacer"></div>
-                  <Link to={"/app/universes/1"} className="pr-3">
-                    <FontAwesomeIcon
-                      icon="pen"
-                      className="pr-1"
-                      size="lg"
-                    ></FontAwesomeIcon>
-                  </Link>
-                  <Link to={"#delete"}>
-                    <FontAwesomeIcon
-                      icon="trash-alt"
-                      size="lg"
-                    ></FontAwesomeIcon>
-                  </Link>
-                </Card.Footer>
-              </Card>
+              <h1>
+                Now need to make the pencil take to an edit screen and create
+                the PUT for updating in the back end...also configure the
+                sorting.
+              </h1>
+              {universes.map((universe, i) => {
+                return (
+                  <Card key={i} className="mb-4 shadow-sm">
+                    <Card.Header as="h4">{universe.name}</Card.Header>
+                    <Card.Body>
+                      <Card.Text>{universe.description}</Card.Text>
+                      <Button variant="primary">Go somewhere</Button>
+                    </Card.Body>
+                    <Card.Footer className="text-muted d-flex">
+                      Created - {universe.createdTimestamp.substring(8)} -
+                      Updated {universe.modifiedTimestamp}
+                      <div className="spacer"></div>
+                      <Link
+                        to={`/app/universes/${universe.id}`}
+                        className="pr-3"
+                      >
+                        <FontAwesomeIcon
+                          icon="pen"
+                          className="pr-1"
+                          size="lg"
+                        ></FontAwesomeIcon>
+                      </Link>
+                      <Link to={"#delete"} onClick={test}>
+                        <FontAwesomeIcon
+                          icon="trash-alt"
+                          size="lg"
+                        ></FontAwesomeIcon>
+                      </Link>
+                    </Card.Footer>
+                  </Card>
+                );
+              })}
             </Col>
           </Row>
         </AppFrontPageWrapper>

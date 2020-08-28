@@ -2,13 +2,20 @@ import axios from "axios";
 
 const API_URL = "http://localhost:8080/universes/";
 
-const createUniverse = async (ownerId, name, description) => {
+const createUniverse = async (ownerId, name, desc) => {
   return axios.post(API_URL + `${ownerId}/create_universe`, {
     name,
-    description,
+    desc,
+  });
+};
+
+const getUniversesList = (ids) => {
+  return axios.get(API_URL + "universe_list", {
+    ids,
   });
 };
 
 export default {
   createUniverse,
+  getUniversesList,
 };
