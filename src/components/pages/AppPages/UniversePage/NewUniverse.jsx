@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Redirect, Link } from "react-router-dom";
+import { Redirect, Link, useHistory } from "react-router-dom";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
@@ -9,6 +9,7 @@ import Form from "react-bootstrap/Form";
 import { useForm } from "react-hook-form";
 
 import AuthService from "../../../../services/auth.service";
+import UniverseService from "../../../../services/universe.service";
 import AppNavbar from "../../../atoms/Navbar/AppNavbar";
 import AppFrontPageWrapper from "../../../organisms/Wrappers/AppFrontPageWrapper";
 
@@ -17,7 +18,7 @@ export default () => {
   if (currentUser === null || currentUser === undefined) {
     return <Redirect to="/login" />;
   }
-  // const [content, setContent] = useState("");
+  let history = useHistory();
   const { register, handleSubmit, errors } = useForm();
 
   const [successful, setSuccessful] = useState(false);
@@ -38,27 +39,28 @@ export default () => {
     setMessage("");
     setSuccessful(false);
 
-    // configure backend first
-    // AuthService.register(username, email, name, password, userBio).then(
-    //   (response) => {
-    //     setMessage(response.data.message);
-    //     setSuccessful(true);
-    //     logIn();
-    //     //history.push("/about"); // for some reason...we aren't logged in at this point. It's like login isn't even being calleed...
-    //     //window.location.reload();
-    //   },
-    //   (error) => {
-    //     const resMessage =
-    //       (error.response &&
-    //         error.response.data &&
-    //         error.response.data.message) ||
-    //       error.message ||
-    //       error.toString();
+    UniverseService.createUniverse(
+      currentUser.id,
+      universeName,
+      universeDesc
+    ).then(
+      (response) => {
+        setMessage(response.data.message);
+        setSuccessful(true);
+        history.push(`/app/universes/${response.data.idOfCreatedDocument}`);
+      },
+      (error) => {
+        const resMessage =
+          (error.response &&
+            error.response.data &&
+            error.response.data.message) ||
+          error.message ||
+          error.toString();
 
-    //     setMessage(resMessage);
-    //     setSuccessful(false);
-    //   }
-    // );
+        setMessage(resMessage);
+        setSuccessful(false);
+      }
+    );
     console.log(data);
   };
 
