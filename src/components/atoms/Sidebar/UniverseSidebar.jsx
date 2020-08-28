@@ -1,14 +1,15 @@
-import React, { useState } from "react";
+import React from "react";
 import Card from "react-bootstrap/Card";
 import ListGroup from "react-bootstrap/ListGroup";
 import Accordion from "react-bootstrap/Accordion";
 import { withRouter, Link } from "react-router-dom";
-import Forest from "../../../images/floating-forest.jpg";
-import AuthService from "../../../services/auth.service";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
+import "../../../Sidebar.css";
+import AuthService from "../../../services/auth.service";
+import Forest from "../../../images/floating-forest.jpg";
+
 const Side = ({ children }) => {
-  const [open, setOpen] = useState(false);
   const currentUser = AuthService.getCurrentUser(); // no need to check if null, sidebar only renders in App
 
   const logOut = () => {
@@ -56,7 +57,6 @@ const Side = ({ children }) => {
               <ListGroup.Item as={Link} to={"/app"} action className="border-0">
                 <FontAwesomeIcon
                   icon="home"
-                  className="pr-1"
                   size="lg"
                   className="mr-2"
                 ></FontAwesomeIcon>
@@ -70,7 +70,6 @@ const Side = ({ children }) => {
               >
                 <FontAwesomeIcon
                   icon="user-circle"
-                  className="pr-1"
                   size="lg"
                   className="mr-2"
                 ></FontAwesomeIcon>
@@ -85,7 +84,6 @@ const Side = ({ children }) => {
               >
                 <FontAwesomeIcon
                   icon="sign-out-alt"
-                  className="pr-1"
                   size="lg"
                   className="mr-2"
                 ></FontAwesomeIcon>
@@ -99,7 +97,6 @@ const Side = ({ children }) => {
           <Accordion defaultActiveKey="0">
             <Accordion.Toggle
               as={ListGroup.Item}
-              variant="dark"
               action
               eventKey="0"
               className="d-flex"

@@ -8,7 +8,8 @@ import Card from "react-bootstrap/Card";
 import CardDeck from "react-bootstrap/CardDeck";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
-import Navbar from "../../atoms/Navbar/Navbar";
+
+import Navbar from "../../../atoms/Navbar/Navbar";
 
 export default () => {
   return (

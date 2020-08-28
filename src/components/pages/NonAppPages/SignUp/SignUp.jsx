@@ -7,9 +7,10 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import AuthService from "../../../services/auth.service";
+import AuthService from "../../../../services/auth.service";
 import { useForm } from "react-hook-form";
-import Navbar from "../../atoms/Navbar/Navbar";
+
+import Navbar from "../../../atoms/Navbar/Navbar";
 
 export default () => {
   const { register, handleSubmit, errors } = useForm();

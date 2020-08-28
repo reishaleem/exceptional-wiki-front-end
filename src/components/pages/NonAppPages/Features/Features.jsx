@@ -5,7 +5,8 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
 import CardColumns from "react-bootstrap/CardColumns";
-import Navbar from "../../atoms/Navbar/Navbar";
+
+import Navbar from "../../../atoms/Navbar/Navbar";
 
 export default () => {
   return (

@@ -9,8 +9,9 @@ import Card from "react-bootstrap/Card";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link, Redirect } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import AuthService from "../../../services/auth.service";
-import Navbar from "../../atoms/Navbar/Navbar";
+
+import AuthService from "../../../../services/auth.service";
+import Navbar from "../../../atoms/Navbar/Navbar";
 
 export default () => {
   const currentUser = AuthService.getCurrentUser();

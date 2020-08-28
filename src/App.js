@@ -1,20 +1,19 @@
 import React from "react";
 import "./App.css";
-import SignUp from "./components/pages/SignUp/SignUp";
-import SignIn from "./components/pages/SignIn/SignIn";
-import MainHome from "./components/pages/MainHome/MainHome";
+import SignUp from "./components/pages/NonAppPages/SignUp/SignUp";
+import SignIn from "./components/pages/NonAppPages/SignIn/SignIn";
+import MainHome from "./components/pages/NonAppPages/MainHome/MainHome";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Route, Switch } from "react-router-dom";
-import Container from "react-bootstrap/Container";
-import UserProfilePage from "./components/pages/UserProfilePage/UserProfilePage";
-import UserSecurityPage from "./components/pages/UserProfilePage/UserSecurityPage";
-import UserDeletePage from "./components/pages/UserProfilePage/UserDeletePage";
-import About from "./components/pages/About/About";
-import Features from "./components/pages/Features/Features";
-import AppHome from "./components/pages/AppFrontPage/AppHome";
-import UniversesHome from "./components/pages/AppFrontPage/UniversesHome";
-import NewUniverse from "./components/pages/UniversePage/NewUniverse";
-import UniverseHomePage from "./components/pages/UniversePage/UniverseHomePage";
+import UserProfilePage from "./components/pages/AppPages/UserProfilePage/UserProfilePage";
+import UserSecurityPage from "./components/pages/AppPages/UserProfilePage/UserSecurityPage";
+import UserDeletePage from "./components/pages/AppPages/UserProfilePage/UserDeletePage";
+import About from "./components/pages/NonAppPages/About/About";
+import Features from "./components/pages/NonAppPages/Features/Features";
+import AppHome from "./components/pages/AppPages/AppFrontPage/AppHome";
+import UniversesHome from "./components/pages/AppPages/AppFrontPage/UniversesHome";
+import NewUniverse from "./components/pages/AppPages/UniversePage/NewUniverse";
+import UniverseHomePage from "./components/pages/AppPages/UniversePage/UniverseHomePage";
 
 function App() {
   return (
