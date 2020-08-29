@@ -15,7 +15,12 @@ const getUniversesList = (ids) => {
   });
 };
 
+const getUniverse = (id) => {
+  return axios.get(API_URL + `${id}`);
+};
+
 export default {
   createUniverse,
   getUniversesList,
+  getUniverse,
 };

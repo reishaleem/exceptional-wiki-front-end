@@ -31,6 +31,7 @@ import {
   faStickyNote,
   faFlask,
   faEdit,
+  faEye,
 } from "@fortawesome/free-solid-svg-icons";
 
 library.add(
@@ -58,7 +59,8 @@ library.add(
   faPalette,
   faStickyNote,
   faFlask,
-  faEdit
+  faEdit,
+  faEye
 );
 
 ReactDOM.render(

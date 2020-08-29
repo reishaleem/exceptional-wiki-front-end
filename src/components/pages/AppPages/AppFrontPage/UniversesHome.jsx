@@ -75,7 +75,9 @@ export default () => {
               {universes.map((universe, i) => {
                 return (
                   <Card key={i} className="mb-4 shadow-sm">
-                    <Card.Header as="h4">{universe.name}</Card.Header>
+                    <Link to={`/app/universes/${universe.id}`}>
+                      <Card.Header as="h4">{universe.name}</Card.Header>
+                    </Link>
                     <Card.Body>
                       <Card.Text>{universe.description}</Card.Text>
                       <Button variant="primary">Go somewhere</Button>

@@ -21,7 +21,7 @@ export default ({ children }) => {
           <Sidebar />
         </Col>
         <Col md={10} className="app-page-main-content">
-          <Container className="profile-padding py-3">{children}</Container>
+          <Container>{children}</Container>
         </Col>
       </Row>
     </>
