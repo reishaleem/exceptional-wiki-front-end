@@ -15,6 +15,7 @@ import UniversesHome from "./components/pages/AppPages/AppFrontPage/UniversesHom
 import NewUniverse from "./components/pages/AppPages/UniversePage/NewUniverse";
 import UniverseHomePage from "./components/pages/AppPages/UniversePage/UniverseHomePage";
 import NewWiki from "./components/pages/AppPages/WikiPage/NewWiki";
+import EditWiki from "./components/pages/AppPages/WikiPage/EditWiki";
 
 function App() {
   return (
@@ -32,6 +33,11 @@ function App() {
         <Route
           path="/app/universes/:universeId/wikis/new"
           component={NewWiki}
+          exact
+        />
+        <Route
+          path="/app/universes/:universeId/wikis/:wikiId/edit"
+          component={EditWiki}
           exact
         />
         <Route path="/about" component={About} exact />

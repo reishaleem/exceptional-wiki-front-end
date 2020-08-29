@@ -16,12 +16,20 @@ const getUniversesList = (ids) => {
   });
 };
 
-const getUniverse = (id) => {
-  return axios.get(API_URL + `${id}`);
+const getWiki = (universeId, id) => {
+  return axios.get(API_URL + `${universeId}/wikis/` + `${id}`);
+};
+
+const updateWiki = (universeId, wikiId, name, body) => {
+  return axios.put(API_URL + `${universeId}/wikis/` + `${wikiId}/update`, {
+    name,
+    body,
+  });
 };
 
 export default {
   createWiki,
   getUniversesList,
-  getUniverse,
+  getWiki,
+  updateWiki,
 };

@@ -92,7 +92,9 @@ export default () => {
                             size="sm"
                           ></FontAwesomeIcon>
                         </Link>
-                        <Link to={"#Edit"}>
+                        <Link
+                          to={`/app/universes/${universeId}/wikis/${wiki.id}/edit`}
+                        >
                           <FontAwesomeIcon
                             icon="pen"
                             className="mr-2"
