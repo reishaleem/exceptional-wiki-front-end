@@ -9,10 +9,8 @@ const createUniverse = async (ownerId, name, desc) => {
   });
 };
 
-const getUniversesList = (ids) => {
-  return axios.get(API_URL + "universe_list", {
-    ids,
-  });
+const getWikiList = (universeId) => {
+  return axios.get(API_URL + `${universeId}/universes`);
 };
 
 const getUniverse = (id) => {
@@ -21,6 +19,6 @@ const getUniverse = (id) => {
 
 export default {
   createUniverse,
-  getUniversesList,
+  getWikiList,
   getUniverse,
 };

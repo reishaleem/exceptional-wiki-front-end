@@ -23,14 +23,18 @@ export default () => {
   }
 
   const { universeId } = useParams();
-  const [universe, setUniverse] = useState({});
+  //const [universe, setUniverse] = useState({});
+  const [wikis, setWikis] = useState([]);
 
   useEffect(() => {
-    UniverseService.getUniverse(universeId).then((response) => {
-      setUniverse(response.data);
+    // UniverseService.getUniverse(universeId).then((response) => {
+    //   setUniverse(response.data);
+    // });
+    UniverseService.getWikiList(universeId).then((response) => {
+      setWikis(response.data);
     });
   }, [universeId]);
-  console.log(universe);
+  console.log(wikis);
 
   // we can have a recently updated pagination for the wikis. The 'wiki dashboard' is essentially out universe hub. This pagination can also be sorted
   // by article type, created date, etc... and we can have a search function through it
@@ -46,7 +50,7 @@ export default () => {
         <UniverseSidebarWrapper>
           <Row style={{ paddingBottom: "15px" }}>
             <Col md={3}>
-              <Link to={"#newwiki"}>
+              <Link to={`/app/universes/${universeId}/wikis/new`}>
                 <Button variant="primary" size="lg" block className="mb-4">
                   Create Wiki
                 </Button>
@@ -70,47 +74,56 @@ export default () => {
               </Form>
             </Col>
             <Col md={6}>
-              <h1>
-                Map all wikis linked to this universe in cards below and
-                paginate it to only show like 10{" "}
-              </h1>
-              <Card>
-                <Card.Body>
-                  <Card.Title className="d-flex">
-                    Wiki Name<div className="spacer"></div>
-                    <Link to={"#View"}>
-                      <FontAwesomeIcon
-                        icon="eye"
-                        className="mr-2"
-                        size="sm"
-                      ></FontAwesomeIcon>
-                    </Link>
-                    <Link to={"#Edit"}>
-                      <FontAwesomeIcon
-                        icon="pen"
-                        className="mr-2"
-                        size="sm"
-                      ></FontAwesomeIcon>
-                    </Link>
-                    <Link to={"#delete"}>
-                      <FontAwesomeIcon
-                        icon="trash-alt"
-                        size="sm"
-                      ></FontAwesomeIcon>
-                    </Link>
-                  </Card.Title>
-                  <Card.Subtitle className="text-muted">
-                    Wiki category (character, magic, etc.)
-                  </Card.Subtitle>
-                  <Card.Text className="mb-3">
-                    Calendar logo and updated date, maybe word count, some
-                    identifier{" "}
-                  </Card.Text>
-                  <Card.Text>
-                    Maybe some Wiki tags, like Work In Progress
-                  </Card.Text>
-                </Card.Body>
-              </Card>
+              <h1>paginate this to only show like 10 </h1>
+              {wikis.map((wiki, i) => {
+                const timestamp = wiki.modifiedTimestamp;
+                const date = timestamp.substring(8);
+                const time = timestamp.substring(0, 8);
+                return (
+                  <Card key={i}>
+                    <Card.Body>
+                      <Card.Title className="d-flex">
+                        {wiki.name}
+                        <div className="spacer"></div>
+                        <Link to={"#View"}>
+                          <FontAwesomeIcon
+                            icon="eye"
+                            className="mr-2"
+                            size="sm"
+                          ></FontAwesomeIcon>
+                        </Link>
+                        <Link to={"#Edit"}>
+                          <FontAwesomeIcon
+                            icon="pen"
+                            className="mr-2"
+                            size="sm"
+                          ></FontAwesomeIcon>
+                        </Link>
+                        <Link to={"#delete"}>
+                          <FontAwesomeIcon
+                            icon="trash-alt"
+                            size="sm"
+                          ></FontAwesomeIcon>
+                        </Link>
+                      </Card.Title>
+                      <Card.Subtitle className="text-muted">
+                        Wiki category (character, magic, etc.)
+                      </Card.Subtitle>
+                      <Card.Text className="mb-3" style={{ fontSize: "13px" }}>
+                        <FontAwesomeIcon
+                          icon="calendar-alt"
+                          className="mr-1"
+                        ></FontAwesomeIcon>
+                        {date + " at " + time}
+                        maybe word count, some identifier{" "}
+                      </Card.Text>
+                      <Card.Text>
+                        Maybe some Wiki tags, like Work In Progress
+                      </Card.Text>
+                    </Card.Body>
+                  </Card>
+                );
+              })}
             </Col>
             <Col md={3}>
               <Card className="mb-4">
