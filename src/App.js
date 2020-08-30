@@ -16,6 +16,7 @@ import NewUniverse from "./components/pages/AppPages/UniversePage/NewUniverse";
 import UniverseHomePage from "./components/pages/AppPages/UniversePage/UniverseHomePage";
 import NewWiki from "./components/pages/AppPages/WikiPage/NewWiki";
 import EditWiki from "./components/pages/AppPages/WikiPage/EditWiki";
+import RichEditor from "./components/atoms/RichEditor/RichEditor";
 
 function App() {
   return (
@@ -41,6 +42,7 @@ function App() {
           exact
         />
         <Route path="/about" component={About} exact />
+        <Route path="/editor" component={RichEditor} exact />
         <Route path="/features" component={Features} exact />
         <Route path="/register" component={SignUp} exact />
         <Route path="/login" component={SignIn} exact />

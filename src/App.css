@@ -133,3 +133,7 @@ h1 {
 .spacer {
   flex-grow: 1 !important;
 }
+
+.draft-editor-wrapper {
+  border: 1px solid #ccc;
+}

@@ -13,6 +13,7 @@ import UniverseService from "../../../../services/universe.service";
 import AppNavbar from "../../../atoms/Navbar/AppNavbar";
 import UniverseSidebarWrapper from "../../../organisms/Wrappers/UniverseSidebarWrapper";
 import WikiService from "../../../../services/wiki.service";
+import RichEditor from "../../../atoms/RichEditor/RichEditor";
 
 export default () => {
   const currentUser = AuthService.getCurrentUser();
@@ -118,6 +119,8 @@ export default () => {
                     onChange={onChangeWikiBody}
                     ref={register({ maxLength: 500 })}
                   />
+                  <RichEditor />
+
                   <Form.Text className="text-right" muted>
                     {wikiBody.length} / 500
                   </Form.Text>
@@ -130,8 +133,8 @@ export default () => {
                     </Button>
                   </Link>
                 </ButtonGroup>
-                <ButtonGroup className="mr-2" aria-label="First group">
-                  <Button variant="primary" type="submit">
+                <ButtonGroup className="mr-2" aria-label="Second group">
+                  <Button variant="primary" type="submit" key="submit">
                     Save
                   </Button>
                 </ButtonGroup>
