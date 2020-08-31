@@ -14,6 +14,7 @@ import AppNavbar from "../../../atoms/Navbar/AppNavbar";
 import UniverseSidebarWrapper from "../../../organisms/Wrappers/UniverseSidebarWrapper";
 import WikiService from "../../../../services/wiki.service";
 import RichEditor from "../../../atoms/RichEditor/RichEditor";
+import WSYIWYGEditor from "../../../atoms/WYSIWYGEditor/WSYIWYGEditor";
 
 export default () => {
   const currentUser = AuthService.getCurrentUser();
@@ -119,7 +120,8 @@ export default () => {
                     onChange={onChangeWikiBody}
                     ref={register({ maxLength: 500 })}
                   />
-                  <RichEditor />
+
+                  <WSYIWYGEditor initValue={wikiBody} />
 
                   <Form.Text className="text-right" muted>
                     {wikiBody.length} / 500
