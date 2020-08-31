@@ -15,6 +15,9 @@ import AuthService from "../../../../services/auth.service";
 import AppNavbar from "../../../atoms/Navbar/AppNavbar";
 import UniverseSidebarWrapper from "../../../organisms/Wrappers/UniverseSidebarWrapper";
 import UniverseService from "../../../../services/universe.service";
+import TaskProvider from "../../../../context/TaskProvider";
+import NewTodoItemForm from "../../../atoms/TodoItem/NewTodoItemForm";
+import TodoList from "../../../molecules/TodoList/TodoList";
 
 export default () => {
   const currentUser = AuthService.getCurrentUser();
@@ -130,10 +133,14 @@ export default () => {
             <Col md={3}>
               <Card className="mb-4">
                 <Card.Header>TODO</Card.Header>
+                <TaskProvider>
+                  <NewTodoItemForm />
+                  <TodoList />
+                </TaskProvider>
                 <Card.Body>
                   <Card.Text>
                     Will need to integrate a TODO list. Only show like 5 entries
-                    and paginate it.
+                    and paginate it. And split between due date today, short term, long term, overdue
                   </Card.Text>
                 </Card.Body>
               </Card>
