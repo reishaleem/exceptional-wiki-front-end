@@ -17,48 +17,57 @@ import UniverseHomePage from "./components/pages/AppPages/UniversePage/UniverseH
 import NewWiki from "./components/pages/AppPages/WikiPage/NewWiki";
 import EditWiki from "./components/pages/AppPages/WikiPage/EditWiki";
 import RichEditor from "./components/atoms/RichEditor/RichEditor";
-import TodoList from "./components/molecules/TodoList/TodoList";
-import TaskProvider from "./context/TaskProvider";
-import NewTodoItemForm from "./components/atoms/TodoItem/NewTodoItemForm";
 
 function App() {
-  return (
-    <>
-      <Switch>
-        <Route path="/" component={MainHome} exact />
-        <Route path="/app" component={AppHome} exact />
-        <Route path="/app/universes" component={UniversesHome} exact />
-        <Route path="/app/universes/new" component={NewUniverse} exact />
-        <Route
-          path="/app/universes/:universeId"
-          component={UniverseHomePage}
-          exact
-        />
-        <Route
-          path="/app/universes/:universeId/wikis/new"
-          component={NewWiki}
-          exact
-        />
-        <Route
-          path="/app/universes/:universeId/wikis/:wikiId/edit"
-          component={EditWiki}
-          exact
-        />
-        <Route path="/about" component={About} exact />
-        <Route path="/editor" component={RichEditor} exact />
-        <Route path="/features" component={Features} exact />
-        <Route path="/register" component={SignUp} exact />
-        <Route path="/login" component={SignIn} exact />
-        <Route path="/app/account/profile" component={UserProfilePage} exact />
-        <Route
-          path="/app/account/security"
-          component={UserSecurityPage}
-          exact
-        />
-        <Route path="/app/account/delete" component={UserDeletePage} exact />
-      </Switch>
-    </>
-  );
+    return (
+        <>
+            <Switch>
+                <Route path="/" component={MainHome} exact />
+                <Route path="/app" component={AppHome} exact />
+                <Route path="/app/universes" component={UniversesHome} exact />
+                <Route
+                    path="/app/universes/new"
+                    component={NewUniverse}
+                    exact
+                />
+                <Route
+                    path="/app/universes/:universeId"
+                    component={UniverseHomePage}
+                    exact
+                />
+                <Route
+                    path="/app/universes/:universeId/wikis/new"
+                    component={NewWiki}
+                    exact
+                />
+                <Route
+                    path="/app/universes/:universeId/wikis/:wikiId/edit"
+                    component={EditWiki}
+                    exact
+                />
+                <Route path="/about" component={About} exact />
+                <Route path="/editor" component={RichEditor} exact />
+                <Route path="/features" component={Features} exact />
+                <Route path="/register" component={SignUp} exact />
+                <Route path="/login" component={SignIn} exact />
+                <Route
+                    path="/app/account/profile"
+                    component={UserProfilePage}
+                    exact
+                />
+                <Route
+                    path="/app/account/security"
+                    component={UserSecurityPage}
+                    exact
+                />
+                <Route
+                    path="/app/account/delete"
+                    component={UserDeletePage}
+                    exact
+                />
+            </Switch>
+        </>
+    );
 }
 
 export default App;
