@@ -16,6 +16,7 @@ import AppNavbar from "../../../atoms/Navbar/AppNavbar";
 import UniverseSidebarWrapper from "../../../organisms/Wrappers/UniverseSidebarWrapper";
 import UniverseService from "../../../../services/universe.service";
 import TaskService from "../../../../services/tasklist.service";
+import TaskList from "../../../molecules/TaskList/TaskList";
 
 export default () => {
     const currentUser = AuthService.getCurrentUser();
@@ -27,6 +28,10 @@ export default () => {
     //const [universe, setUniverse] = useState({});
     const [wikis, setWikis] = useState([]);
     const [taskList, setTaskList] = useState({});
+    const [taskListLoading, setTaskListLoading] = useState(true);
+    const [taskListLoaded, setTaskListLoaded] = useState(false);
+    const [successful, setSuccessful] = useState(false);
+    const [message, setMessage] = useState("");
 
     useEffect(() => {
         // UniverseService.getUniverse(universeId).then((response) => {
@@ -37,9 +42,44 @@ export default () => {
         });
         TaskService.getUniverseTaskList(universeId).then((response) => {
             setTaskList(response.data);
+            setTaskListLoading(false);
+            setTaskListLoaded(true);
         });
     }, [universeId]);
-    console.log(taskList);
+
+    const onSubmitNewTask = (data) => {
+        setTaskListLoaded(false);
+        setTaskListLoading(true);
+
+        TaskService.addTask(
+            taskList.id,
+            data.newTaskName,
+            "Implement later",
+            false
+        ).then(
+            (response) => {
+                setMessage(response.data.message);
+                setSuccessful(true);
+                setTaskList(response.data);
+                console.log(response);
+                setTaskListLoading(false);
+                setTaskListLoaded(true);
+            },
+            (error) => {
+                const resMessage =
+                    (error.response &&
+                        error.response.data &&
+                        error.response.data.message) ||
+                    error.message ||
+                    error.toString();
+
+                setMessage(resMessage);
+                setSuccessful(false);
+            }
+        );
+    };
+
+    console.log(taskListLoaded);
 
     // we can have a recently updated pagination for the wikis. The 'wiki dashboard' is essentially out universe hub. This pagination can also be sorted
     // by article type, created date, etc... and we can have a search function through it
@@ -149,18 +189,28 @@ export default () => {
                         <Col md={3}>
                             <Card className="mb-4">
                                 <Card.Header>TODO</Card.Header>
-                                {taskList.tasks &&
-                                    taskList.tasks.map((task) => {
-                                        return <h6>{task.task}</h6>;
-                                    })}
-                                <Card.Body>
-                                    <Card.Text>
-                                        Will need to integrate a TODO list. Only
-                                        show like 5 entries and paginate it. And
-                                        split between due date today, short
-                                        term, long term, overdue
-                                    </Card.Text>
-                                </Card.Body>
+                                {taskListLoading && <h4>Loading...</h4>}
+                                {taskListLoaded && (
+                                    <Card.Body>
+                                        {taskList.tasks && (
+                                            <TaskList
+                                                taskListId={taskList.id}
+                                                tasks={taskList.tasks}
+                                                onSubmitNewTask={
+                                                    onSubmitNewTask
+                                                }
+                                            />
+                                        )}
+                                        <Card.Text>
+                                            Will need to integrate a TODO list.
+                                            Only show like 5 entries and
+                                            paginate it. And split between due
+                                            date today, short term, long term,
+                                            overdue. Also our new task thing
+                                            needs to be bigger.
+                                        </Card.Text>
+                                    </Card.Body>
+                                )}
                             </Card>
                             <Accordion>
                                 <Accordion.Toggle
