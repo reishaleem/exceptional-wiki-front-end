@@ -15,6 +15,7 @@ import AuthService from "../../../../services/auth.service";
 import AppNavbar from "../../../atoms/Navbar/AppNavbar";
 import UniverseSidebarWrapper from "../../../organisms/Wrappers/UniverseSidebarWrapper";
 import UniverseService from "../../../../services/universe.service";
+import TaskService from "../../../../services/tasklist.service";
 
 export default () => {
     const currentUser = AuthService.getCurrentUser();
@@ -25,6 +26,7 @@ export default () => {
     const { universeId } = useParams();
     //const [universe, setUniverse] = useState({});
     const [wikis, setWikis] = useState([]);
+    const [taskList, setTaskList] = useState({});
 
     useEffect(() => {
         // UniverseService.getUniverse(universeId).then((response) => {
@@ -33,8 +35,11 @@ export default () => {
         UniverseService.getWikiList(universeId).then((response) => {
             setWikis(response.data);
         });
+        TaskService.getUniverseTaskList(universeId).then((response) => {
+            setTaskList(response.data);
+        });
     }, [universeId]);
-    console.log(wikis);
+    console.log(taskList);
 
     // we can have a recently updated pagination for the wikis. The 'wiki dashboard' is essentially out universe hub. This pagination can also be sorted
     // by article type, created date, etc... and we can have a search function through it
@@ -144,7 +149,10 @@ export default () => {
                         <Col md={3}>
                             <Card className="mb-4">
                                 <Card.Header>TODO</Card.Header>
-
+                                {taskList.tasks &&
+                                    taskList.tasks.map((task) => {
+                                        return <h6>{task.task}</h6>;
+                                    })}
                                 <Card.Body>
                                     <Card.Text>
                                         Will need to integrate a TODO list. Only
