@@ -26,6 +26,7 @@
     "react-scripts": "3.4.3",
     "react-validation": "^3.0.7",
     "storybook": "^6.0.16",
+    "typewriter-effect": "^2.13.1",
     "validator": "^13.1.1"
   },
   "scripts": {

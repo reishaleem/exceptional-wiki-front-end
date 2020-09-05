@@ -15,6 +15,8 @@ This is the front-end of a web application that uses React, Spring Boot, and Mon
 
 There are many aspects of the app that are placeholders for future features. They are there just to show what it would look like if it were complete.
 
+The design of the front-end mirrors the designs of other applications like [Plot Factory](https://plotfactory.com) and [World Anvil](https://www.worldanvil.com/). This app was mainly just a learning experience, and I wanted to duplicate certain aspects of these designs.
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Tools and Technologies used
