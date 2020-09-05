@@ -1,0 +1,27 @@
+.clickable-icon {
+    cursor: pointer;
+}
+
+.clickable-icon:hover {
+    color: red;
+}
+
+.complete {
+    color: #d9d9d9;
+    text-decoration: line-through;
+}
+
+.overdue {
+    color: red;
+}
+
+.page-item.active {
+    display: none;
+}
+
+.btn-group-toggle .active {
+    background-color: transparent !important;
+    color: red !important;
+    background-image: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGQ9Ik0yNCAyNGgtMjR2LTI0aDI0djI0em0tMS0yM2gtMjJ2MjJoMjJ2LTIyem0tMyA2LjQzNWwtMTAuMDA1IDEwLjU2NS00Ljk5NS01Ljg2Ni43NjEtLjY0OCA0LjI3MSA1LjAxNSA5LjI0LTkuNzUxLjcyOC42ODV6Ii8+PC9zdmc+");
+    background-size: contain;
+}

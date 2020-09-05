@@ -16,7 +16,8 @@ import AppNavbar from "../../../atoms/Navbar/AppNavbar";
 import UniverseSidebarWrapper from "../../../organisms/Wrappers/UniverseSidebarWrapper";
 import UniverseService from "../../../../services/universe.service";
 import TaskService from "../../../../services/tasklist.service";
-import TaskList from "../../../molecules/TaskList/TaskList";
+import TaskList from "../../../ImportedComponents/UniverseTaskList";
+import UniverseTaskList from "../../../ImportedComponents/UniverseTaskList";
 
 export default () => {
     const currentUser = AuthService.getCurrentUser();
@@ -79,7 +80,9 @@ export default () => {
         );
     };
 
-    console.log(taskListLoaded);
+    const onSetTaskComplete = (data) => {
+        console.log(data);
+    };
 
     // we can have a recently updated pagination for the wikis. The 'wiki dashboard' is essentially out universe hub. This pagination can also be sorted
     // by article type, created date, etc... and we can have a search function through it
@@ -94,7 +97,7 @@ export default () => {
                 <AppNavbar />
                 <UniverseSidebarWrapper>
                     <Row style={{ paddingBottom: "15px" }}>
-                        <Col md={3}>
+                        <Col md={2}>
                             <Link to={`/app/universes/${universeId}/wikis/new`}>
                                 <Button
                                     variant="primary"
@@ -186,32 +189,9 @@ export default () => {
                                 );
                             })}
                         </Col>
-                        <Col md={3}>
-                            <Card className="mb-4">
-                                <Card.Header>TODO</Card.Header>
-                                {taskListLoading && <h4>Loading...</h4>}
-                                {taskListLoaded && (
-                                    <Card.Body>
-                                        {taskList.tasks && (
-                                            <TaskList
-                                                taskListId={taskList.id}
-                                                tasks={taskList.tasks}
-                                                onSubmitNewTask={
-                                                    onSubmitNewTask
-                                                }
-                                            />
-                                        )}
-                                        <Card.Text>
-                                            Will need to integrate a TODO list.
-                                            Only show like 5 entries and
-                                            paginate it. And split between due
-                                            date today, short term, long term,
-                                            overdue. Also our new task thing
-                                            needs to be bigger.
-                                        </Card.Text>
-                                    </Card.Body>
-                                )}
-                            </Card>
+                        <Col md={4}>
+                            <UniverseTaskList id={universeId} />
+
                             <Accordion>
                                 <Accordion.Toggle
                                     as={ListGroup.Item}
