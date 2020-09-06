@@ -13,7 +13,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 This is the front-end of a web application that uses React, Spring Boot, and MongoDB. This application currently allows users to create accounts, universes, wiki articles, and a todo list for each universe. The articles can be about anything, from characters to locations to events. The back end can be found [here](https://github.com/reishaleem/exceptional-wiki-back-end).
 
-There are many aspects of the app that are placeholders for future features. They are there just to show what it would look like if it were complete.
+There are aspects of the app that are placeholders for future features. They are there just to show what it would look like if it were complete.
 
 The design of the front-end mirrors the designs of other applications like [Plot Factory](https://plotfactory.com) and [World Anvil](https://www.worldanvil.com/). This app was mainly just a learning experience, and I wanted to duplicate certain aspects of these designs.
 
