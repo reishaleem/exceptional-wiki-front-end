@@ -9,7 +9,7 @@ import "../../../Sidebar.css";
 import AuthService from "../../../services/auth.service";
 import Forest from "../../../images/floating-forest.jpg";
 
-const Side = ({ children }) => {
+const Side = ({ children, universeId }) => {
     const currentUser = AuthService.getCurrentUser(); // no need to check if null, sidebar only renders in App
 
     const logOut = () => {
@@ -121,7 +121,7 @@ const Side = ({ children }) => {
                             <ListGroup variant="flush">
                                 <ListGroup.Item
                                     as={Link}
-                                    to={"#"}
+                                    to={`/app/universes/${universeId}/wikis`}
                                     action
                                     className="pl-5 border-0"
                                 >
@@ -134,7 +134,7 @@ const Side = ({ children }) => {
                                 </ListGroup.Item>
                                 <ListGroup.Item
                                     as={Link}
-                                    to={"#"}
+                                    to={`/app/universes/${universeId}/maps`}
                                     action
                                     className="pl-5 border-0"
                                 >
@@ -147,7 +147,7 @@ const Side = ({ children }) => {
                                 </ListGroup.Item>
                                 <ListGroup.Item
                                     as={Link}
-                                    to={"#"}
+                                    to={`/app/universes/${universeId}/timelines`}
                                     action
                                     className="pl-5 border-0"
                                 >
@@ -160,7 +160,7 @@ const Side = ({ children }) => {
                                 </ListGroup.Item>
                                 <ListGroup.Item
                                     as={Link}
-                                    to={"#"}
+                                    to={`/app/universes/${universeId}/charts`}
                                     action
                                     className="pl-5 border-0"
                                 >
@@ -173,7 +173,7 @@ const Side = ({ children }) => {
                                 </ListGroup.Item>
                                 <ListGroup.Item
                                     as={Link}
-                                    to={"#"}
+                                    to={`/app/universes/${universeId}/Settings`}
                                     action
                                     className="pl-5 border-0"
                                 >
@@ -187,7 +187,11 @@ const Side = ({ children }) => {
                             </ListGroup>
                         </Accordion.Collapse>
 
-                        <ListGroup.Item as={Link} to={"#"} action>
+                        <ListGroup.Item
+                            as={Link}
+                            to={`/app/universes/${universeId}/writing`}
+                            action
+                        >
                             <FontAwesomeIcon
                                 icon="feather-alt"
                                 className="mr-2"
@@ -196,7 +200,11 @@ const Side = ({ children }) => {
                             Writing
                         </ListGroup.Item>
 
-                        <ListGroup.Item as={Link} to={"#"} action>
+                        <ListGroup.Item
+                            as={Link}
+                            to={`/app/universes/${universeId}/files`}
+                            action
+                        >
                             <FontAwesomeIcon
                                 icon="folder"
                                 className="mr-2"
@@ -241,7 +249,7 @@ const Side = ({ children }) => {
                             <ListGroup variant="flush">
                                 <ListGroup.Item
                                     as={Link}
-                                    to={"#"}
+                                    to={`/app/universes/${universeId}/templates`}
                                     action
                                     className="pl-5 border-0"
                                 >
@@ -256,7 +264,7 @@ const Side = ({ children }) => {
                                 </ListGroup.Item>
                                 <ListGroup.Item
                                     as={Link}
-                                    to={"#"}
+                                    to={`/app/universes/${universeId}/notebook`}
                                     action
                                     className="pl-5 border-0"
                                 >
@@ -270,7 +278,7 @@ const Side = ({ children }) => {
                                 </ListGroup.Item>
                                 <ListGroup.Item
                                     as={Link}
-                                    to={"#"}
+                                    to={`/generator`}
                                     action
                                     className="pl-5 border-0"
                                 >
@@ -283,7 +291,7 @@ const Side = ({ children }) => {
                                 </ListGroup.Item>
                                 <ListGroup.Item
                                     as={Link}
-                                    to={"#"}
+                                    to={`/app/universes/${universeId}/sheets`}
                                     action
                                     className="pl-5 border-0"
                                 >

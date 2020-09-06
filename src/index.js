@@ -34,6 +34,8 @@ import {
     faEye,
     faCalendarAlt,
     faThumbtack,
+    faSortAmountUp,
+    faParagraph,
 } from "@fortawesome/free-solid-svg-icons";
 
 library.add(
@@ -64,7 +66,9 @@ library.add(
     faEdit,
     faEye,
     faCalendarAlt,
-    faThumbtack
+    faThumbtack,
+    faSortAmountUp,
+    faParagraph
 );
 
 ReactDOM.render(

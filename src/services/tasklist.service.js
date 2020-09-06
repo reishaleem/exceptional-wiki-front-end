@@ -7,6 +7,7 @@ const getUniverseTaskList = async (id) => {
 };
 
 const getWikiTaskList = async (id) => {
+    console.log(id);
     return axios.get(API_URL + `/wikis/${id}`);
 };
 

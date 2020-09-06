@@ -17,6 +17,7 @@ import UniverseHomePage from "./components/pages/AppPages/UniversePage/UniverseH
 import NewWiki from "./components/pages/AppPages/WikiPage/NewWiki";
 import EditWiki from "./components/pages/AppPages/WikiPage/EditWiki";
 import RichEditor from "./components/atoms/RichEditor/RichEditor";
+import ErrorPage from "./components/pages/NonAppPages/ErrorPage/ErrorPage";
 
 function App() {
     return (
@@ -31,7 +32,7 @@ function App() {
                     exact
                 />
                 <Route
-                    path="/app/universes/:universeId"
+                    path="/app/universes/:universeId/wikis"
                     component={UniverseHomePage}
                     exact
                 />
@@ -65,6 +66,7 @@ function App() {
                     component={UserDeletePage}
                     exact
                 />
+                <Route component={ErrorPage} />
             </Switch>
         </>
     );

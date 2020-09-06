@@ -5,6 +5,7 @@ import Col from "react-bootstrap/Col";
 import Image from "react-bootstrap/Image";
 import Typewriter from "typewriter-effect";
 import Forest from "../../../../images/floating-forest.jpg";
+import OnePiece from "../../../../images/onepieceworld.jpg";
 import Navbar from "../../../atoms/Navbar/Navbar";
 
 export default () => {
@@ -78,7 +79,7 @@ export default () => {
                             </p>
                         </Col>
                         <Col md={6}>
-                            <Image src={Forest} fluid />
+                            <Image src={OnePiece} fluid />
                         </Col>
                     </Row>
                 </Container>

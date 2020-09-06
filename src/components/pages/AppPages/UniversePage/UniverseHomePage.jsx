@@ -10,6 +10,7 @@ import Card from "react-bootstrap/Card";
 import Accordion from "react-bootstrap/Accordion";
 import ListGroup from "react-bootstrap/ListGroup";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import moment from "moment";
 
 import AuthService from "../../../../services/auth.service";
 import AppNavbar from "../../../atoms/Navbar/AppNavbar";
@@ -19,6 +20,7 @@ import TaskService from "../../../../services/tasklist.service";
 import TaskList from "../../../ImportedComponents/UniverseTaskList";
 import UniverseTaskList from "../../../ImportedComponents/UniverseTaskList";
 import Pagination from "react-js-pagination";
+import { OverlayTrigger, Tooltip } from "react-bootstrap";
 
 export default () => {
     const currentUser = AuthService.getCurrentUser();
@@ -32,7 +34,7 @@ export default () => {
     //const [wikisLoading, setWikisLoading] = useState(true);
     const [wikis, setWikis] = useState([]);
 
-    const [activeWikiPage, setActiveWikiPage] = useState(0);
+    const [activeWikiPage, setActiveWikiPage] = useState(1);
     const [paginationOffset, setPaginationOffset] = useState(0);
 
     const [successful, setSuccessful] = useState(false);
@@ -52,7 +54,7 @@ export default () => {
         setWikisLoaded(false);
 
         setActiveWikiPage(pageNumber);
-        setPaginationOffset((pageNumber - 1) * 5);
+        setPaginationOffset((pageNumber - 1) * 7);
 
         setWikisLoaded(true);
     }
@@ -68,7 +70,7 @@ export default () => {
         <>
             <Container fluid style={{ paddingLeft: "0px" }}>
                 <AppNavbar />
-                <UniverseSidebarWrapper>
+                <UniverseSidebarWrapper universeId={universeId}>
                     <Row style={{ paddingBottom: "15px" }}>
                         <Col md={2}>
                             <Link to={`/app/universes/${universeId}/wikis/new`}>
@@ -86,13 +88,22 @@ export default () => {
                                     <FormControl
                                         type="text"
                                         placeholder="Search"
+                                        disabled={
+                                            !wikisLoaded || wikis.length == 0
+                                        }
                                     />
                                 </Form.Group>
                             </Form>
                             <Form>
                                 <Form.Group controlId="universeSort">
                                     <Form.Label>Sort By</Form.Label>
-                                    <Form.Control as="select" custom>
+                                    <Form.Control
+                                        as="select"
+                                        disabled={
+                                            !wikisLoaded || wikis.length == 0
+                                        }
+                                        custom
+                                    >
                                         <option>Most recent</option>
                                         <option>Name (A-Z)</option>
                                         <option>Name (Z-A)</option>
@@ -104,82 +115,167 @@ export default () => {
                         </Col>
                         <Col md={6}>
                             <div className="d-flex">
-                                <h1>paginate this to only show like 10</h1>
+                                <h1>Wikis</h1>
                                 <div className="spacer"></div>
-                                <Pagination
-                                    totalItemsCount={wikis.length}
-                                    activePage={activeWikiPage}
-                                    onChange={(pageNumber) =>
-                                        handlePageChange(pageNumber)
-                                    }
-                                    itemsCountPerPage={7}
-                                    itemClass="page-item"
-                                    linkClass="page-link"
-                                    pageRangeDisplayed={1}
-                                    hideFirstLastPages={true}
-                                    innerClass="pagination justify-content-end align-items-end mb-2"
-                                />
+                                {wikisLoaded && wikis.length > 0 && (
+                                    <Pagination
+                                        totalItemsCount={wikis.length}
+                                        activePage={activeWikiPage}
+                                        onChange={(pageNumber) =>
+                                            handlePageChange(pageNumber)
+                                        }
+                                        itemsCountPerPage={7}
+                                        itemClass="page-item"
+                                        linkClass="page-link"
+                                        pageRangeDisplayed={1}
+                                        hideFirstLastPages={true}
+                                        innerClass="pagination justify-content-end align-items-end mb-2"
+                                    />
+                                )}
                             </div>
                             <hr />
-                            {wikis
-                                .slice(paginationOffset, paginationOffset + 5)
-                                .map((wiki, i) => {
-                                    const timestamp = wiki.modifiedTimestamp;
-                                    const date = timestamp.substring(8);
-                                    const time = timestamp.substring(0, 8);
-                                    return (
-                                        <Card key={i}>
-                                            <Card.Body>
-                                                <Card.Title className="d-flex">
-                                                    {wiki.name}
-                                                    <div className="spacer"></div>
-                                                    <Link to={"#View"}>
-                                                        <FontAwesomeIcon
-                                                            icon="eye"
-                                                            className="mr-2"
-                                                            size="sm"
-                                                        ></FontAwesomeIcon>
-                                                    </Link>
-                                                    <Link
-                                                        to={`/app/universes/${universeId}/wikis/${wiki.id}/edit`}
-                                                    >
-                                                        <FontAwesomeIcon
-                                                            icon="pen"
-                                                            className="mr-2"
-                                                            size="sm"
-                                                        ></FontAwesomeIcon>
-                                                    </Link>
-                                                    <Link to={"#delete"}>
-                                                        <FontAwesomeIcon
-                                                            icon="trash-alt"
-                                                            size="sm"
-                                                        ></FontAwesomeIcon>
-                                                    </Link>
-                                                </Card.Title>
-                                                <Card.Subtitle className="text-muted">
-                                                    Wiki category (character,
-                                                    magic, etc.)
-                                                </Card.Subtitle>
-                                                <Card.Text
-                                                    className="mb-3"
-                                                    style={{ fontSize: "13px" }}
-                                                >
-                                                    <FontAwesomeIcon
-                                                        icon="calendar-alt"
-                                                        className="mr-1"
-                                                    ></FontAwesomeIcon>
-                                                    {date + " at " + time}
-                                                    maybe word count, some
-                                                    identifier{" "}
-                                                </Card.Text>
-                                                <Card.Text>
-                                                    Maybe some Wiki tags, like
-                                                    Work In Progress
-                                                </Card.Text>
-                                            </Card.Body>
-                                        </Card>
-                                    );
-                                })}
+                            {!wikisLoaded && <h2>Loading...</h2>}
+                            {wikisLoaded && wikis.length > 0 ? (
+                                <>
+                                    {wikis
+                                        .slice(
+                                            paginationOffset,
+                                            paginationOffset + 7
+                                        )
+                                        .map((wiki, i) => {
+                                            return (
+                                                <Card key={i} className="mb-3">
+                                                    <Card.Body>
+                                                        <Card.Title className="d-flex">
+                                                            {wiki.name}
+                                                            <div className="spacer"></div>
+                                                            <Link to={"#View"}>
+                                                                <FontAwesomeIcon
+                                                                    icon="eye"
+                                                                    className="mr-2"
+                                                                    size="sm"
+                                                                ></FontAwesomeIcon>
+                                                            </Link>
+                                                            <Link
+                                                                to={`/app/universes/${universeId}/wikis/${wiki.id}/edit`}
+                                                            >
+                                                                <FontAwesomeIcon
+                                                                    icon="pen"
+                                                                    className="mr-2"
+                                                                    size="sm"
+                                                                ></FontAwesomeIcon>
+                                                            </Link>
+                                                            <Link
+                                                                to={"#delete"}
+                                                            >
+                                                                <FontAwesomeIcon
+                                                                    icon="trash-alt"
+                                                                    size="sm"
+                                                                ></FontAwesomeIcon>
+                                                            </Link>
+                                                        </Card.Title>
+                                                        <Card.Subtitle className="text-muted">
+                                                            Wiki category
+                                                            (character, magic,
+                                                            etc.)
+                                                        </Card.Subtitle>
+                                                        <Card.Text
+                                                            className="mb-3"
+                                                            style={{
+                                                                fontSize:
+                                                                    "13px",
+                                                            }}
+                                                        >
+                                                            <OverlayTrigger
+                                                                key="calendar-tooltip"
+                                                                placement="top"
+                                                                overlay={
+                                                                    <Tooltip
+                                                                        id={`tooltip-modified-date`}
+                                                                    >
+                                                                        Last
+                                                                        modified
+                                                                    </Tooltip>
+                                                                }
+                                                            >
+                                                                <span
+                                                                    className="pr-2"
+                                                                    style={{
+                                                                        cursor:
+                                                                            "pointer",
+                                                                    }}
+                                                                >
+                                                                    <FontAwesomeIcon
+                                                                        icon="calendar-alt"
+                                                                        className="mr-1"
+                                                                    ></FontAwesomeIcon>
+                                                                    {moment(
+                                                                        wiki.modifiedTimestamp
+                                                                    ).format(
+                                                                        "MMM Do, YYYY [at] h:mma"
+                                                                    )}
+                                                                </span>
+                                                            </OverlayTrigger>
+                                                            <OverlayTrigger
+                                                                key="word-count-tooltip"
+                                                                placement="top"
+                                                                overlay={
+                                                                    <Tooltip
+                                                                        id={`tooltip-word-count`}
+                                                                    >
+                                                                        Word
+                                                                        count
+                                                                    </Tooltip>
+                                                                }
+                                                            >
+                                                                <span
+                                                                    className="pr-2"
+                                                                    style={{
+                                                                        cursor:
+                                                                            "pointer",
+                                                                    }}
+                                                                >
+                                                                    <FontAwesomeIcon
+                                                                        icon="paragraph"
+                                                                        className="mr-1"
+                                                                    ></FontAwesomeIcon>
+                                                                    {
+                                                                        wiki
+                                                                            .body
+                                                                            .length
+                                                                    }
+                                                                </span>
+                                                            </OverlayTrigger>
+                                                        </Card.Text>
+                                                        <Card.Text>
+                                                            Maybe some Wiki
+                                                            tags, like Work In
+                                                            Progress
+                                                        </Card.Text>
+                                                    </Card.Body>
+                                                </Card>
+                                            );
+                                        })}
+                                    <Pagination
+                                        totalItemsCount={wikis.length}
+                                        activePage={activeWikiPage}
+                                        onChange={(pageNumber) =>
+                                            handlePageChange(pageNumber)
+                                        }
+                                        itemsCountPerPage={7}
+                                        itemClass="page-item"
+                                        linkClass="page-link"
+                                        pageRangeDisplayed={3}
+                                        hideFirstLastPages={true}
+                                        innerClass="pagination justify-content-center"
+                                        activeClass="active showActive"
+                                    />
+                                </>
+                            ) : (
+                                <div className="text-center py-5">
+                                    <small>No Wikis created</small>
+                                </div>
+                            )}
                         </Col>
                         <Col md={4}>
                             <UniverseTaskList id={universeId} />
