@@ -2,12 +2,7 @@ import React, { useState } from "react";
 import { Editor } from "react-draft-wysiwyg";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import "./WYSIWYG.css";
-import {
-    EditorState,
-    ContentState,
-    convertToRaw,
-    convertFromHTML,
-} from "draft-js";
+import { EditorState, ContentState, convertToRaw } from "draft-js";
 import htmlToDraft from "html-to-draftjs";
 import { useEffect } from "react";
 import draftToHtml from "draftjs-to-html";
@@ -31,7 +26,7 @@ export default (props) => {
             const editorState = EditorState.createWithContent(contentState);
             setEditorState(editorState);
         }
-    }, []);
+    }, [props.initValue]);
 
     function onEditorStateChange(newState) {
         setEditorState(newState);

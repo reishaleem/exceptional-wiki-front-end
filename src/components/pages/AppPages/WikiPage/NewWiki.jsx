@@ -9,9 +9,7 @@ import Form from "react-bootstrap/Form";
 import { useForm } from "react-hook-form";
 
 import AuthService from "../../../../services/auth.service";
-import UniverseService from "../../../../services/universe.service";
 import AppNavbar from "../../../atoms/Navbar/AppNavbar";
-import AppFrontPageWrapper from "../../../organisms/Wrappers/AppFrontPageWrapper";
 import WikiService from "../../../../services/wiki.service";
 import UniverseSidebarWrapper from "../../../organisms/Wrappers/UniverseSidebarWrapper";
 

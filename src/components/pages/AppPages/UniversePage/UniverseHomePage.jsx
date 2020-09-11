@@ -16,8 +16,6 @@ import AuthService from "../../../../services/auth.service";
 import AppNavbar from "../../../atoms/Navbar/AppNavbar";
 import UniverseSidebarWrapper from "../../../organisms/Wrappers/UniverseSidebarWrapper";
 import UniverseService from "../../../../services/universe.service";
-import TaskService from "../../../../services/tasklist.service";
-import TaskList from "../../../ImportedComponents/UniverseTaskList";
 import UniverseTaskList from "../../../ImportedComponents/UniverseTaskList";
 import Pagination from "react-js-pagination";
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
@@ -36,9 +34,6 @@ export default () => {
 
     const [activeWikiPage, setActiveWikiPage] = useState(1);
     const [paginationOffset, setPaginationOffset] = useState(0);
-
-    const [successful, setSuccessful] = useState(false);
-    const [message, setMessage] = useState("");
 
     useEffect(() => {
         // UniverseService.getUniverse(universeId).then((response) => {
@@ -89,7 +84,7 @@ export default () => {
                                         type="text"
                                         placeholder="Search"
                                         disabled={
-                                            !wikisLoaded || wikis.length == 0
+                                            !wikisLoaded || wikis.length === 0
                                         }
                                     />
                                 </Form.Group>
@@ -100,7 +95,7 @@ export default () => {
                                     <Form.Control
                                         as="select"
                                         disabled={
-                                            !wikisLoaded || wikis.length == 0
+                                            !wikisLoaded || wikis.length === 0
                                         }
                                         custom
                                     >

@@ -12,7 +12,6 @@ import moment from "moment";
 
 import AuthService from "../../../../services/auth.service";
 import UserService from "../../../../services/user.service";
-import UniverseService from "../../../../services/universe.service";
 import AppNavbar from "../../../atoms/Navbar/AppNavbar";
 import AppFrontPageWrapper from "../../../organisms/Wrappers/AppFrontPageWrapper";
 
@@ -64,7 +63,7 @@ export default () => {
                                         placeholder="Search"
                                         disabled={
                                             !universesLoaded ||
-                                            universes.length == 0
+                                            universes.length === 0
                                         }
                                     />
                                 </Form.Group>
@@ -76,7 +75,7 @@ export default () => {
                                         as="select"
                                         disabled={
                                             !universesLoaded ||
-                                            universes.length == 0
+                                            universes.length === 0
                                         }
                                         custom
                                     >

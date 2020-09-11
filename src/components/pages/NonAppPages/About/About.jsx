@@ -4,7 +4,6 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Image from "react-bootstrap/Image";
 import Typewriter from "typewriter-effect";
-import Forest from "../../../../images/floating-forest.jpg";
 import OnePiece from "../../../../images/onepieceworld.jpg";
 import Navbar from "../../../atoms/Navbar/Navbar";
 

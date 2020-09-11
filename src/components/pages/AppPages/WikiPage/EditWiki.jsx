@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Redirect, Link, useHistory, useParams } from "react-router-dom";
+import { Redirect, Link, useParams } from "react-router-dom";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
@@ -10,11 +10,9 @@ import Card from "react-bootstrap/Card";
 import { useForm, Controller } from "react-hook-form";
 
 import AuthService from "../../../../services/auth.service";
-import UniverseService from "../../../../services/universe.service";
 import AppNavbar from "../../../atoms/Navbar/AppNavbar";
 import UniverseSidebarWrapper from "../../../organisms/Wrappers/UniverseSidebarWrapper";
 import WikiService from "../../../../services/wiki.service";
-import RichEditor from "../../../atoms/RichEditor/RichEditor";
 import WSYIWYGEditor from "../../../atoms/WYSIWYGEditor/WSYIWYGEditor";
 import WikiTaskList from "../../../ImportedComponents/WikiTaskList";
 
@@ -23,7 +21,7 @@ export default () => {
     if (currentUser === null || currentUser === undefined) {
         return <Redirect to="/login" />;
     }
-    let history = useHistory();
+
     const { register, handleSubmit, errors, control } = useForm({
         mode: "onChange",
     });
@@ -55,10 +53,6 @@ export default () => {
 
     function onChangeWikiName(e) {
         setWikiName(e.target.value);
-    }
-
-    function onChangeWikiBody(e) {
-        setWikiBody(e.target.value);
     }
 
     const onSubmit = (data) => {
