@@ -1,0 +1,10 @@
+{
+  "auth": {
+    "exceptionaloutlinerdde57249": {
+      "service": "Cognito",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [],
+      "customAuth": false
+    }
+  }
+}
