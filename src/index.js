@@ -39,6 +39,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import Amplify from "aws-amplify";
 import config from "./aws-exports";
+
 Amplify.configure(config);
 
 library.add(
